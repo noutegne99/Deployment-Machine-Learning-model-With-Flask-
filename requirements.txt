@@ -1,7 +1,7 @@
 selenium
 dhash
 tldextract
-PIL
+Pillow
 bs4
 numpy 
 flask 
