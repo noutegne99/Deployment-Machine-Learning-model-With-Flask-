@@ -11,8 +11,6 @@ scikit-learn
 chromedriver
 pandas
 requests 
-
-re
 tldextract
 urllib.parse  
 hashlib
