@@ -17,7 +17,7 @@ import pickle
 
 ################################# SEUILLAGE DES SCORES TEXTE ET PERCEPTION ##############################################
 
-PhishingLegitimeSHA3224SS=pd.read_csv('C:/Users/bkoua/Eprojet_/SHA3224/PhishingLegitimeSHA3224SS.csv')
+PhishingLegitimeSHA3224SS=pd.read_csv('/PhishingLegitimeSHA3224SS.csv')
 df1 = PhishingLegitimeSHA3224SS
 ################################# SEUILLAGE DU TEXTE ET DE LA PERCEPTION ##############################################
 for index in range(0,len(df1)): 
