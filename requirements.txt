@@ -6,10 +6,9 @@ bs4
 numpy 
 flask 
 pickle
-selenium 
+chromedriver
 pandas
 requests 
-bs4 
 random
 re
 tldextract
