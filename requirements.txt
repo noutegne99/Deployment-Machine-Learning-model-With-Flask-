@@ -3,3 +3,16 @@ dhash
 tldextract
 PIL
 bs4
+numpy 
+flask 
+pickle
+selenium 
+pandas
+requests 
+bs4 
+random
+re
+tldextract
+urllib.parse  
+hashlib
+sys
