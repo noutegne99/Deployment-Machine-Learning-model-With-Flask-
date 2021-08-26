@@ -12,6 +12,6 @@ chromedriver
 pandas
 requests 
 tldextract
-urllib.parse  
+urllib.parse 
 hashlib
 sys
