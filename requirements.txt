@@ -12,6 +12,8 @@ chromedriver
 pandas
 requests 
 tldextract 
-hashlib
+pip installer hashlib
+hashlib>20081119
+
 sys
 urllib.parse
