@@ -5,7 +5,7 @@ Pillow
 bs4
 numpy 
 flask 
-
+gunicorn
 matplotlib
 scikit-learn
 chromedriver
