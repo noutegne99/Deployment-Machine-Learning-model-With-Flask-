@@ -11,7 +11,7 @@ scikit-learn
 chromedriver
 pandas
 requests 
-random
+
 re
 tldextract
 urllib.parse  
