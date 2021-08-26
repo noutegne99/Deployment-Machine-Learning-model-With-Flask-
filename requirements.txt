@@ -5,7 +5,9 @@ Pillow
 bs4
 numpy 
 flask 
-pickle
+
+matplotlib
+scikit-learn
 chromedriver
 pandas
 requests 
