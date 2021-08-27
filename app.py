@@ -371,7 +371,7 @@ def predict():
                     def func_CheckpasswordCreditcard2(url2):            #f6
                         response2 = requests.get(url2)
                         html2 = response2.text
-                        soup2 = bs(html2, 'lxml')
+                        soup2 = bs(html2)
                         pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
                         [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
                         [label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
