@@ -30,7 +30,7 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     if request.method == 'POST':
-        url = request.form['url'] && data1 = [('{}'.format(url))] 
+        url = request.form['url'] and data1 = [('{}'.format(url))] 
 	
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
