@@ -29,14 +29,9 @@ def home():
 
 @app.route('/predict',methods=[ 'POST'])
 def predict():
-    errors = []
     if request.method == 'POST':
-	try:
-	   url = request.form['url']
-	   data1 = [('{}'.format(url))]
-        except:
-	   errors.append("Unable to get URL. Please make sure it's valid and try again.)
-    
+	url = request.form['url']
+	data1 = [('{}'.format(url))]
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
