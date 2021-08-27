@@ -15,11 +15,9 @@ from sklearn import metrics
 import pickle
 
 
-################################# SEUILLAGE DES SCORES TEXTE ET PERCEPTION ##############################################
-
 PhishingLegitimeSHA3224SS=pd.read_csv('/PhishingLegitimeSHA3224SS.csv')
 df1 = PhishingLegitimeSHA3224SS
-################################# SEUILLAGE DU TEXTE ET DE LA PERCEPTION ##############################################
+################################# THRESHOLDING OF TEXT AND PERCEPTION SCORES ##############################################
 for index in range(0,len(df1)): 
     #print (index)
     if( df1.iat[index,1] == 0 or df1.iat[index,1]>10 or df1.iat[index,1]<-10):
