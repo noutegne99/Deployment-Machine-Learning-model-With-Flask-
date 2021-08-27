@@ -23,15 +23,17 @@ sys.setrecursionlimit(10000)
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def home():
     return render_template('index.html')
 
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     if request.method == 'POST':
-        url = request.form['url']
-	data1 = [('{}'.format(url))]   
+        url11 = request.form['url']
+	url = url11 
+	data1 = [('{}'.format(url))] 
+	
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
         if ats >=1 :
