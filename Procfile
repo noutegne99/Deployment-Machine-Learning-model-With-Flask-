@@ -1,1 +1,1 @@
-web: gunicorn phishing-application.wsgi
+web: gunicorn app:app
