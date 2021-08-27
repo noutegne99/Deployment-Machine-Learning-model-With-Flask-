@@ -45,7 +45,7 @@ def predict():
                 errors.append(
                 "Unable to get URL. Please make sure it's valid and try again."
             )
-            return render_template('index.html', errors=errors)       
+            return render_template('index.html')       
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
         if ats >=1 :
