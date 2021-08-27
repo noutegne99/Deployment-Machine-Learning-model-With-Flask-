@@ -9,7 +9,7 @@ numpy
 flask 
 gunicorn
 matplotlib
-scikit-learn
+scikit-learn==0.21.2
 chromedriver
 pandas
 requests 
