@@ -1,3 +1,5 @@
+
+lxml
 selenium
 dhash
 tldextract
