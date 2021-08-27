@@ -30,8 +30,7 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     if request.method == 'POST':
-        url11 = request.form['url']
-	url = url11 
+        url = request.form['url']
 	data1 = [('{}'.format(url))] 
 	
     def func_urlAtSymbol(url):                                    #f2
