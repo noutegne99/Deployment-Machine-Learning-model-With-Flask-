@@ -180,7 +180,7 @@ def predict():
                         driver.close()
                         response = requests.get(url)
                         html = response.text         
-                        soup = bs(html, 'lxml')
+                        soup = bs(html)
                         links = ([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://")} )] or
                         [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://")} )] or
                         [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or 
@@ -273,7 +273,7 @@ def predict():
                         consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
                         response = requests.get(url)
                         html = response.text
-                        soup = bs(html, 'lxml')
+                        soup = bs(html)
                         try :
                             if (soup.title.string):
                                     #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
@@ -316,7 +316,7 @@ def predict():
                         driver2.close()
                         response2 = requests.get(url2)
                         html2 = response2.text
-                        soup2 = bs(html2, 'lxml')                                                     
+                        soup2 = bs(html2)                                                     
                         #links = soup.find_all('href')
                         links2 = ([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^https://")} )] or 
                         [a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^http://")} )]  or 
@@ -389,7 +389,7 @@ def predict():
                         consdmr2 = ''.join(e for e in dmr2.lower() if e.isalnum())
                         response2 = requests.get(url2)
                         html2 = response2.text
-                        soup2 = bs(html2, 'lxml')
+                        soup2 = bs(html2)
                         try :
                             if ((soup2.title.string) and (soup2.title.string.lower())):
                                     #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
@@ -431,7 +431,7 @@ def predict():
                         driver3.close()
                         response3 = requests.get(url3)
                         html3 = response3.text
-                        soup3 = bs(html3, 'lxml')
+                        soup3 = bs(html3)
                         RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
                          [link.get('href') for link in soup3.findAll('link', attrs={'href': re.compile("^#")} )]or
                          [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])
@@ -455,7 +455,7 @@ def predict():
                     def func_CheckpasswordCreditcard3(url3):            #f6
                         response3 = requests.get(url3)
                         html3 = response3.text
-                        soup3 = bs(html3, 'lxml')
+                        soup3 = bs(html3)
                         pwdCredit3 = ([input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^idcard")} )] or
                         [input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^password")} )]or
                                              [label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
@@ -473,7 +473,7 @@ def predict():
                         consdmr3 = ''.join(e for e in dmr3.lower() if e.isalnum())
                         response3 = requests.get(url3)
                         html3 = response3.text
-                        soup3 = bs(html3, 'lxml')
+                        soup3 = bs(html3)
                         try :
                             if ((soup3.title.string) and (soup3.title.string.lower())):
                                     #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
@@ -511,7 +511,7 @@ def predict():
                         newLinktext1 = checonnectionurll4((newLinktext1))
                         response4 = requests.get(newLinktext1)
                         html4 = response4.text
-                        soup4 = bs(html4, 'lxml')
+                        soup4 = bs(html4)
                         hash_object4 = hashlib.sha3_224(soup4.encode())
                        # print(hash_object4.hexdigest())
                     except:
