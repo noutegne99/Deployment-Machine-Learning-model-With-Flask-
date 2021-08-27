@@ -526,7 +526,7 @@ def predict():
                     GFeature9 = Good_func_urLength(Feature9,Feature91,Feature92)
 
 
-                    with Image.open("/screenshot1.png") as H1 :
+                    with Image.open("screenshot1.png") as H1 :
                         row, col = dhash.dhash_row_col(H1 )
                         #hash1.show() 
                         hash1= dhash.format_hex(row, col)
