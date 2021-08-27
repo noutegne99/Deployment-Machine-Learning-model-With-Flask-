@@ -173,10 +173,10 @@ def predict():
                     links3 =[]
                     RP3=[]
                     try :
-                        driver = webdriver.Chrome('/chromedriver.exe')
+                        driver = webdriver.Chrome('chromedriver.exe')
                         driver.implicitly_wait(2) 
                         resp= driver.get(url)
-                        driver.get_screenshot_as_file('/screenshot1.png')
+                        driver.get_screenshot_as_file('screenshot1.png')
                         driver.close()
                         response = requests.get(url)
                         html = response.text         
@@ -309,10 +309,10 @@ def predict():
 
                     try:    
                         url2 = checonnectionurll2(newLink)
-                        driver2 = webdriver.Chrome('/chromedriver.exe')
+                        driver2 = webdriver.Chrome('chromedriver.exe')
                         driver2.implicitly_wait(2) 
                         resp2= driver2.get(url2)
-                        driver2.get_screenshot_as_file('/screenshot2.png')
+                        driver2.get_screenshot_as_file('screenshot2.png')
                         driver2.close()
                         response2 = requests.get(url2)
                         html2 = response2.text
@@ -424,10 +424,10 @@ def predict():
                         return urll1
                     try:
                         url3 = checonnectionurll3(newLink2)
-                        driver3 = webdriver.Chrome('/chromedriver.exe')
+                        driver3 = webdriver.Chrome('chromedriver.exe')
                         driver3.implicitly_wait(2) 
                         resp3= driver3.get(url3)
-                        driver3.get_screenshot_as_file('/screenshot3.png')
+                        driver3.get_screenshot_as_file('screenshot3.png')
                         driver3.close()
                         response3 = requests.get(url3)
                         html3 = response3.text
@@ -531,12 +531,12 @@ def predict():
                         #hash1.show() 
                         hash1= dhash.format_hex(row, col)
                    # print(hash1)
-                    with Image.open("/screenshot2.png") as H2 :
+                    with Image.open("screenshot2.png") as H2 :
                         row2, col2 = dhash.dhash_row_col(H2 )
                         #hash1.show() 
                         hash2= dhash.format_hex(row2, col2)
                   #   print(hash2)
-                    with Image.open("/screenshot3.png") as H3 :
+                    with Image.open("screenshot3.png") as H3 :
                         row3, col3 = dhash.dhash_row_col(H3 )
                         #hash1.show() 
                         hash3= dhash.format_hex(row3, col3)
@@ -556,7 +556,7 @@ def predict():
                     
                     #'URL','URL': url,
 
-                    with open('/LIONEL.csv', mode='w') as score_file:
+                    with open('LIONEL.csv', mode='w') as score_file:
                         fieldnames = ['Perceptual_similarity','Text_similarity','TesturlAtSymbol','TesturlDasheSymbol','TesturlDotSymbol',
                                       'TestGoodCheckpwdCreditcard','TestGoodMatchDomainTitle','TestIPAdress','TestGoodurLength']
                         writer = csv.DictWriter(score_file, fieldnames=fieldnames)
@@ -569,7 +569,7 @@ def predict():
                     
     def RunData(file):
         model = pickle.load(open('model.pkl','rb'))
-        with open('/LIONEL.csv', 'r') as f:
+        with open('LIONEL.csv', 'r') as f:
             ligne = f.readline()
             ElementData = ligne.split(',')[0:10]
             converted_list = []
@@ -582,7 +582,7 @@ def predict():
             else:
                 text = 'not secure '
         return text
-    return render_template('index.html', prediction_text=' This website is {}'.format(RunData('/LIONEL.csv')))
+    return render_template('index.html', prediction_text=' This website is {}'.format(RunData('LIONEL.csv')))
 
 if __name__ == "__main__":
     app.run(debug=True)
