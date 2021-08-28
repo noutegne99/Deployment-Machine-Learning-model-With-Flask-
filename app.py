@@ -155,12 +155,8 @@ def predict():
             testscore1 = 1
         return testscore1
 
-        ############################################ First check on the URL
-	def func_NRP(RP1):
-		if len(RP1)>=1:
-			return -1
-		else:
-			return -1
+    ############################################ First check on the URL
+	
 		
     def checonnection(data):
         for j in range(len(data)):
@@ -251,7 +247,11 @@ def predict():
 			return -1
 		else:
 			return 1
-
+    def func_NPR1(RP1):
+		if len(RP1)>=1:
+			return -1
+		else:
+			return 1
 
 	def selct_url2(links2, newLink):
 		if(len(links2)>=2):
