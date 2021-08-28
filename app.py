@@ -170,6 +170,69 @@ def predict():
 	    urll1= url
 
 	return urll1
+    def selct_url(links,url):
+	list11=[]
+	if(len(links)>=2):
+	    list_of_random_items=random.sample(links,2)
+	    newLink=list_of_random_items[0]
+	    newLinktext1=list_of_random_items[1]
+	    list11.append(newLink) 
+	    list11.append(newLinktext1)
+	elif(len(links) ==1):
+	    list_of_random_items=random.sample(links,1)
+	    newLink=list_of_random_items[0]
+	    newLinktext1= url
+	    list11.append(newLink) 
+	    list11.append(newLinktext1)
+	else:
+	    newLink= url
+	    newLinktext1 = url
+	    list11.append(newLink) 
+	    list11.append(newLinktext1)
+	    #print(list11)
+	return list11
+    def func_CheckpasswordCreditcard(url):            #f6
+	response = requests.get(url)
+	html = response.text
+	soup = bs(html)
+	pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
+	[input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
+	[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+	[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+	[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+	if (len(pwdCredit) == 0):
+	    return 1
+	else:
+	    return -1
+    def func_MatchDomainTitle(url): #f5
+	import tldextract
+	import requests
+	from bs4 import BeautifulSoup as bs
+	subdm = tldextract.extract(url).subdomain
+	#print(subdm)
+	dmr = tldextract.extract(url).domain
+	#print(dmr)
+	consubdm =''.join(e for e in subdm.lower() if e.isalnum())
+	consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
+	response = requests.get(url)
+	html = response.text
+	soup = bs(html)
+	try :
+	    if (soup.title.string):
+		    #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
+		if (re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))==None):
+		    result1 = -1
+		else:
+		    result1 = 1
+		result= result1
+	    else:
+		result = -1
+	except:
+	      result = -1
+	return result
+    
+	
+    
      #### Test on the content of the page ######################################################
     def func_CheckpasswordCreditcard2(url2):            #f6
 	response2 = requests.get(url2)
@@ -263,27 +326,7 @@ def predict():
                             return 1
 
                     newL =[]
-                    def selct_url(links,url):
-                        list11=[]
-                        if(len(links)>=2):
-                            list_of_random_items=random.sample(links,2)
-                            newLink=list_of_random_items[0]
-                            newLinktext1=list_of_random_items[1]
-                            list11.append(newLink) 
-                            list11.append(newLinktext1)
-                        elif(len(links) ==1):
-                            list_of_random_items=random.sample(links,1)
-                            newLink=list_of_random_items[0]
-                            newLinktext1= url
-                            list11.append(newLink) 
-                            list11.append(newLinktext1)
-                        else:
-                            newLink= url
-                            newLinktext1 = url
-                            list11.append(newLink) 
-                            list11.append(newLinktext1)
-                            #print(list11)
-                        return list11
+                    
                     newL= selct_url(links,url)   
                     newLink = newL[0] 
                     newLinktext1=newL[1]
@@ -298,45 +341,7 @@ def predict():
 
                     #### Test on the content of the page #############################################
                     ###### Function that verifies if the page asks for the password ###################
-                    def func_CheckpasswordCreditcard(url):            #f6
-                        response = requests.get(url)
-                        html = response.text
-                        soup = bs(html)
-                        pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
-                        [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
-                        [label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-                        [label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-                        [label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-                        if (len(pwdCredit) == 0):
-                            return 1
-                        else:
-                            return -1
-                    def func_MatchDomainTitle(url): #f5
-                        import tldextract
-                        import requests
-                        from bs4 import BeautifulSoup as bs
-                        subdm = tldextract.extract(url).subdomain
-                        #print(subdm)
-                        dmr = tldextract.extract(url).domain
-                        #print(dmr)
-                        consubdm =''.join(e for e in subdm.lower() if e.isalnum())
-                        consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
-                        response = requests.get(url)
-                        html = response.text
-                        soup = bs(html)
-                        try :
-                            if (soup.title.string):
-                                    #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
-                                if (re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))==None):
-                                    result1 = -1
-                                else:
-                                    result1 = 1
-                                result= result1
-                            else:
-                                result = -1
-                        except:
-                              result = -1
-                        return result
+                    
                     Feature5 = func_CheckpasswordCreditcard(url)
                     Feature6 = func_MatchDomainTitle(url)
                     Feature7 = func_NRP(RP1)
