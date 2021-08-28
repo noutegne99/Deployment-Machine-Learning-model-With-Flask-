@@ -36,12 +36,6 @@ def home():
 def predict():
     data1 = []
 	
-	RP1 = []
-	link2 = []
-	newL = []
-	RP3 = []
-	links3 = []
-	RP3 = []
     if request.method == 'POST':
         url = request.form['url'] 
         data1 = [('{}'.format(url))]
