@@ -168,7 +168,7 @@ def predict():
             except:
                 print("Fail connection")
         return data1
-	####
+
 	########################################################	
 	
 		
