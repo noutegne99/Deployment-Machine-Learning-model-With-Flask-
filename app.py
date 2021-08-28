@@ -154,9 +154,6 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
-
-    ############################################ First check on the URL
-	
 		
     def checonnection(data):
         for j in range(len(data)):
@@ -168,11 +165,6 @@ def predict():
             except:
                 print("Fail connection")
         return data1
-
-	########################################################	
-	
-    
-	
 	chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
 	
