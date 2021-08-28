@@ -1,4 +1,4 @@
-python-3.8.8
+python==3.8.11
 lxml
 selenium
 dhash
@@ -12,5 +12,5 @@ matplotlib
 chromedriver
 pandas
 requests 
-tldextract 
+
 
