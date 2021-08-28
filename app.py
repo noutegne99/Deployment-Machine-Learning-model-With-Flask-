@@ -21,6 +21,9 @@ import sys
  
 import lxml
 sys.setrecursionlimit(10000)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('disable-infobars')
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
@@ -165,10 +168,7 @@ def predict():
             except:
                 print("Fail connection")
         return data1
-	chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
 	
-    chrome_options.add_argument('disable-infobars')
     #try:
     for n in range(len(data1)):
 	    url = data1[n]
