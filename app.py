@@ -76,7 +76,21 @@ def predict():
             return -1
         else:
             return 1
-    ################ Funn that checks the length of an url ##################################################
+	def func_CheckpasswordCreditcard2(url2):            #f6
+		response2 = requests.get(url2)
+		html2 = response2.text
+		soup2 = bs(html2)
+		pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
+		[input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
+		[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+		[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+		[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+		if (len(pwdCredit2) == 0):
+			return 1
+		else:
+			return -1
+	
+	################ Funn that checks the length of an url ##################################################
     '''def func_urLength(url):      #for j in range(len(data)):                                #f9
         urlength = len(url) 
 	    if(urlength > 80):
@@ -173,22 +187,6 @@ def predict():
     #try:
     for n in range(len(data1)):
 	    url = data1[n]
-		
-		
-		#### Test on the content of the page ######################################################
-		def func_CheckpasswordCreditcard2(url2):            #f6
-			response2 = requests.get(url2)
-			html2 = response2.text
-			soup2 = bs(html2)
-			pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
-			[input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
-			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-			if (len(pwdCredit2) == 0):
-				return 1
-			else:
-				return -1
 		
 		def func_MatchDomainTitle2(url2):                  #f5
 
