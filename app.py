@@ -161,15 +161,15 @@ def predict():
                 print("Fail connection")
         return data1
     def checonnectionurll2(urll):
-                        try :
-                            request = requests.get(urll)
-                            if request.status_code == 200:
-                                urll1 = urll
-                        except:
-                            print("Fail connection")
-                            urll1= url
+	try :
+	    request = requests.get(urll)
+	    if request.status_code == 200:
+		urll1 = urll
+	except:
+	    print("Fail connection")
+	    urll1= url
 
-                        return urll1
+	return urll1
      #### Test on the content of the page ######################################################
     def func_CheckpasswordCreditcard2(url2):            #f6
 	response2 = requests.get(url2)
