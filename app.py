@@ -171,17 +171,7 @@ def predict():
 
 	########################################################	
 	
-    def selct_url2(links2, newLink):
-		if(len(links2)>=2):
-			list_of_random_items2=random.sample(links2,2)
-			newLink2=list_of_random_items2[0]
-		elif(len(links2) ==1):
-			list_of_random_items2=random.sample(links2,1)
-			newLink2=list_of_random_items2[0]
-		else:
-			newLink2= newLink
-			#newLinktext1 = url
-		return newLink2
+    
 	#### Test on the content of the page ######################################################
 	def func_CheckpasswordCreditcard2(url2):            #f6
 		response2 = requests.get(url2)
@@ -302,6 +292,17 @@ def predict():
 		RP3=[]
 		links3 =[]
 		RP3=[]
+		def selct_url2(links2, newLink):
+			if(len(links2)>=2):
+				list_of_random_items2=random.sample(links2,2)
+				newLink2=list_of_random_items2[0]
+		    elif(len(links2) ==1):
+				list_of_random_items2=random.sample(links2,1)
+				newLink2=list_of_random_items2[0]
+			else:
+				newLink2= newLink
+				#newLinktext1 = url
+			return newLink2
 		def selct_url(links,url):
 			list11=[]
 			if(len(links)>=2):
