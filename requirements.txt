@@ -5,7 +5,7 @@ dhash
 tldextract
 Pillow
 bs4
-numpy 
+numpy==1.11.0 
 flask 
 gunicorn
 matplotlib
