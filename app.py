@@ -18,12 +18,8 @@ from urllib.parse  import urlparse
 import hashlib
 from random import sample 
 import sys
- 
 import lxml
 sys.setrecursionlimit(10000)
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('disable-infobars')
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
@@ -35,7 +31,6 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     data1 = []
-	
     if request.method == 'POST':
         url = request.form['url'] 
         data1 = [('{}'.format(url))]
@@ -56,12 +51,6 @@ def predict():
             return -1
         else:
             return 1
-    def func_urLength(url):
-        urlength = len(url)
-        if(urlength>80):
-            return -1
-        else:
-            return 1
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -76,34 +65,21 @@ def predict():
             return -1
         else:
             return 1
-	def func_CheckpasswordCreditcard2(url2):            #f6
-		response2 = requests.get(url2)
-		html2 = response2.text
-		soup2 = bs(html2)
-		pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
-		[input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
-		[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-		[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-		[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-		if (len(pwdCredit2) == 0):
+    ################ Funn that checks the length of an url ##################################################
+    def func_urLength(url):                                      #f9
+        #for j in range(len(data)):
+		urlength = len(url) 
+		if(urlength > 80):
+			return -1
+		else:
+			return 1 
+   ##### Function that checks the number of dots the resource ################################
+    def func_urlDotSymbol(url):                                  #f4
+		dots= urlparse(url).netloc
+		if dots.count('.')<= 3 :
 			return 1
 		else:
 			return -1
-	
-	################ Funn that checks the length of an url ##################################################
-    '''def func_urLength(url):      #for j in range(len(data)):                                #f9
-        urlength = len(url) 
-	    if(urlength > 80):
-             return -1
-	    else:
-	         return 1'''
-   ##### Function that checks the number of dots the resource ################################
-    def func_urlDotSymbol(url):                                  #f4
-        dots= urlparse(url).netloc
-        if dots.count('.')<= 3 :
-             return 1
-        else:
-             return -1
     #######Decision groups########################################################################
     def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
         if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
@@ -172,7 +148,8 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
-		
+
+        ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
             urlj = data[j]
@@ -183,11 +160,228 @@ def predict():
             except:
                 print("Fail connection")
         return data1
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
 	
+    chrome_options.add_argument('disable-infobars')
     #try:
     for n in range(len(data1)):
 	    url = data1[n]
-		
+		links =[]
+		RP1=[]
+		link2 =[]
+		RP3=[]
+		links3 =[]
+		RP3=[]
+		try :
+			driver = webdriver.Chrome('chromedriver.exe')
+			driver.implicitly_wait(2) 
+			resp= driver.get(url)
+			driver.get_screenshot_as_file('screenshot1.png')
+			driver.close()
+			response = requests.get(url)
+			html = response.text         
+			soup = bs(html)
+			links = ([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://")} )] or
+			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://")} )] or
+			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or 
+			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^/")} )] or 
+			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
+			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or
+			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )]   or
+			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or 
+			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^http://[A-Za-z0-9]")})] or
+			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or 
+			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^https://[A-Za-z0-9]")} )]or
+			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )] or 
+			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})]or
+			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
+			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
+			#print(links)
+			RP1 =([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or
+			 [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )]or
+			 [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})])
+
+			hash_object = hashlib.sha3_224(soup.encode()).hexdigest()
+			#print(hash_object.hexdigest())
+			print(url)
+		except:
+			pass
+		def func_NRP(RP1):
+			if len(RP1)>=1:
+				return -1
+			else:
+				return 1
+
+		newL =[]
+		def selct_url(links,url):
+			list11=[]
+			if(len(links)>=2):
+				list_of_random_items=random.sample(links,2)
+				newLink=list_of_random_items[0]
+				newLinktext1=list_of_random_items[1]
+				list11.append(newLink) 
+				list11.append(newLinktext1)
+			elif(len(links) ==1):
+				list_of_random_items=random.sample(links,1)
+				newLink=list_of_random_items[0]
+				newLinktext1= url
+				list11.append(newLink) 
+				list11.append(newLinktext1)
+			else:
+				newLink= url
+				newLinktext1 = url
+				list11.append(newLink) 
+				list11.append(newLinktext1)
+				#print(list11)
+			return list11
+		newL= selct_url(links,url)   
+		newLink = newL[0] 
+		newLinktext1=newL[1]
+		#print(newLinktext1)
+		#print(newLinktext2)
+		######################## #### ################################################
+		Feature2 = func_urlAtSymbol(url)
+		Feature3 = func_urlDasheSymbol(url)
+		Feature4 = func_urlDotSymbol(url)  
+		Feature8 = func_ipAddress(url)
+		Feature9 = func_urLength(url)
+
+		#### Test on the content of the page #############################################
+		###### Function that verifies if the page asks for the password ###################
+		def func_CheckpasswordCreditcard(url):            #f6
+			response = requests.get(url)
+			html = response.text
+			soup = bs(html)
+			pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
+			[input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
+			[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+			[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+			[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+			if (len(pwdCredit) == 0):
+				return 1
+			else:
+				return -1
+		def func_MatchDomainTitle(url): #f5
+			import tldextract
+			import requests
+			from bs4 import BeautifulSoup as bs
+			subdm = tldextract.extract(url).subdomain
+			#print(subdm)
+			dmr = tldextract.extract(url).domain
+			#print(dmr)
+			consubdm =''.join(e for e in subdm.lower() if e.isalnum())
+			consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
+			response = requests.get(url)
+			html = response.text
+			soup = bs(html)
+			try :
+				if (soup.title.string):
+						#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
+					if (re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))==None):
+						result1 = -1
+					else:
+						result1 = 1
+					result= result1
+				else:
+					result = -1
+			except:
+				  result = -1
+			return result
+		Feature5 = func_CheckpasswordCreditcard(url)
+		Feature6 = func_MatchDomainTitle(url)
+		Feature7 = func_NRP(RP1)
+		#print(url)
+		##$$print(newLink)
+		##$$print(newLinktext1)
+		### Closing the first page #########################################################
+		links2 =[]
+		RP2=[]
+		def checonnectionurll2(urll):
+			try :
+				request = requests.get(urll)
+				if request.status_code == 200:
+					urll1 = urll
+			except:
+				print("Fail connection")
+				urll1= url
+
+			return urll1
+		url2 = checonnectionurll2(newLink)
+		try:    
+			
+			driver2 = webdriver.Chrome('chromedriver.exe')
+			driver2.implicitly_wait(2) 
+			resp2= driver2.get(url2)
+			driver2.get_screenshot_as_file('screenshot2.png')
+			driver2.close()
+			response2 = requests.get(url2)
+			html2 = response2.text
+			soup2 = bs(html2)                                                     
+			#links = soup.find_all('href')
+			links2 = ([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^https://")} )] or 
+			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^http://")} )]  or 
+			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^#")} )] 
+			or [a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^/")} )] or 
+			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
+			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or
+			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or
+			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or 
+			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^http://[A-Za-z0-9]")})] or
+			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or 
+			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^https://[A-Za-z0-9]")} )]or
+			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^#")} )] or 
+			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})]or
+			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
+			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
+			##$$links2
+			RP2 =([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^#")} )] or
+			 [link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^#")} )]or
+			 [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})])
+			hash_object2 = hashlib.sha3_224(soup2.encode())
+			#print(hash_object2.hexdigest())
+		except:
+			pass
+		def func_NRP2(RP2):
+			if len(RP2)>=1:
+				return -1
+			else:
+				return 1
+
+
+		def selct_url2(links2, newLink):
+			if(len(links2)>=2):
+				list_of_random_items2=random.sample(links2,2)
+				newLink2=list_of_random_items2[0]
+			elif(len(links2) ==1):
+				list_of_random_items2=random.sample(links2,1)
+				newLink2=list_of_random_items2[0]
+			else:
+				newLink2= newLink
+				#newLinktext1 = url
+			return newLink2
+		newLink2 = selct_url2(links2, newLink)
+		############################ Test on url ############################################
+		Feature21 = func_urlAtSymbol(url2)
+		Feature31 = func_urlDasheSymbol(url2)
+		Feature41= func_urlDotSymbol(url2)  
+		Feature81 = func_ipAddress(url2)
+		Feature91 = func_urLength(url2)
+
+		#### Test on the content of the page ######################################################
+		def func_CheckpasswordCreditcard2(url2):            #f6
+			response2 = requests.get(url2)
+			html2 = response2.text
+			soup2 = bs(html2)
+			pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
+			[input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
+			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+			if (len(pwdCredit2) == 0):
+				return 1
+			else:
+				return -1
 		def func_MatchDomainTitle2(url2):                  #f5
 
 			subdm2 = tldextract.extract(url2).subdomain
@@ -210,9 +404,15 @@ def predict():
 			except:
 				result = -1
 			return result
-		#print(lisdmr
+					#print(lisdmr
 		##$$print(newLink2)
 		#driver2.close()
+
+		Feature51 = func_CheckpasswordCreditcard2(url2)
+		Feature61 = func_MatchDomainTitle2(url2)
+		Feature71 = func_NRP(RP2)
+		#### Closing of the second web page#######################################################
+
 		def checonnectionurll3(urll):
 			try :
 				request = requests.get(urll)
@@ -223,14 +423,37 @@ def predict():
 				urll1 = url2
 
 			return urll1
-
-
+		try:
+			url3 = checonnectionurll3(newLink2)
+			driver3 = webdriver.Chrome('chromedriver.exe')
+			driver3.implicitly_wait(2) 
+			resp3= driver3.get(url3)
+			driver3.get_screenshot_as_file('screenshot3.png')
+			driver3.close()
+			response3 = requests.get(url3)
+			html3 = response3.text
+			soup3 = bs(html3)
+			RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
+			 [link.get('href') for link in soup3.findAll('link', attrs={'href': re.compile("^#")} )]or
+			 [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])
+		except:
+			pass
+		#hash_object3 = hashlib.md5(soup3.encode())
+		#print(hash_object3.hexdigest())
 		def func_NRP3(RP3):
 			if len(RP3)>=1:
 				return -1
 			else:
 				return 1
-		   def func_CheckpasswordCreditcard3(url3):            #f6
+
+		Feature22 = func_urlAtSymbol(url3)
+		Feature32 = func_urlDasheSymbol(url3)
+		Feature42 = func_urlDotSymbol(url3) 
+		Feature82 = func_ipAddress(url3)
+		Feature92 = func_urLength(url3)
+
+		####### Test on the page content  ##############################
+		def func_CheckpasswordCreditcard3(url3):            #f6
 			response3 = requests.get(url3)
 			html3 = response3.text
 			soup3 = bs(html3)
@@ -269,6 +492,11 @@ def predict():
 			#print(lisdmr2)
 		#print(newLink3)
 		#driver3.close()
+		Feature52 = func_CheckpasswordCreditcard3(url3)
+		Feature62 = func_MatchDomainTitle3(url3)
+		Feature72 = func_NRP3(RP3)
+	######### Closing the last web page##################################
+	######## hash of the second link select on url##########################
 		def checonnectionurll4(urll):
 			try :
 				request = requests.get(urll)
@@ -280,245 +508,6 @@ def predict():
 
 			return urll1
 					#return url2
-		
-		
-		##
-		def selct_url2(links2, newLink):
-			if(len(links2)>=2):
-				list_of_random_items2=random.sample(links2,2)
-				newLink2=list_of_random_items2[0]
-		    elif(len(links2) ==1):
-				list_of_random_items2=random.sample(links2,1)
-				newLink2=list_of_random_items2[0]
-			else:
-				newLink2= newLink
-				#newLinktext1 = url
-			return newLink2
-		def selct_url(links,url):
-			list11=[]
-			if(len(links)>=2):
-				list_of_random_items=random.sample(links,2)
-				newLink=list_of_random_items[0]
-				newLinktext1=list_of_random_items[1]
-				list11.append(newLink) 
-				list11.append(newLinktext1)
-			elif(len(links) ==1):
-				list_of_random_items=random.sample(links,1)
-				newLink=list_of_random_items[0]
-				newLinktext1= url
-				list11.append(newLink) 
-				list11.append(newLinktext1)
-			else:
-				newLink= url
-				newLinktext1 = url
-				list11.append(newLink) 
-				list11.append(newLinktext1)
-				#print(list11)
-			return list11
-		def func_CheckpasswordCreditcard(url):            #f6
-		response = requests.get(url)
-		html = response.text
-		soup = bs(html)
-		pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
-		[input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
-		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-		if (len(pwdCredit) == 0):
-			return 1
-		else:
-			return -1
-		def func_MatchDomainTitle(url): #f5
-			import tldextract
-			import requests
-			from bs4 import BeautifulSoup as bs
-			subdm = tldextract.extract(url).subdomain
-			#print(subdm)
-			dmr = tldextract.extract(url).domain
-			#print(dmr)
-			consubdm =''.join(e for e in subdm.lower() if e.isalnum())
-			consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
-			response = requests.get(url)
-			html = response.text
-			soup = bs(html)
-			try :
-				if (soup.title.string):
-						#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
-					if (re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))==None):
-						result1 = -1
-					else:
-						result1 = 1
-					result= result1
-				else:
-					result = -1
-			except:
-				  result = -1
-			return result	
-	    def checonnectionurll2(urll):
-			try :
-				request = requests.get(urll)
-				if request.status_code == 200:
-					urll1 = urll
-			except:
-				print("Fail connection")
-				urll1= url
-
-			return urll1	
-        def func_NPR1(RP1):
-            if len(RP1)>=1:
-                return -1
-            else:
-                return 1
-		def func_NRP2(RP2):
-			if len(RP2)>=1:
-				return -1
-			else:
-				return 1
-		try :
-			driver = webdriver.Chrome('chromedriver.exe')
-			driver.implicitly_wait(2) 
-			resp= driver.get(url)
-			driver.get_screenshot_as_file('screenshot1.png')
-			driver.close()
-			response = requests.get(url)
-			html = response.text         
-			soup = bs(html)
-			links = ([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://")} )] or
-			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://")} )] or
-			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or 
-			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^/")} )] or 
-			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
-			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or
-			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )]   or
-			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or 
-			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^http://[A-Za-z0-9]")})] or
-			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or 
-			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^https://[A-Za-z0-9]")} )]or
-			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )] or 
-			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})]or
-			[link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
-			[script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
-			#print(links)
-			RP1 =([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or
-			 [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )]or
-			 [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})])
-
-			hash_object = hashlib.sha3_224(soup.encode()).hexdigest()
-			#print(hash_object.hexdigest())
-			print(url)
-		except:
-			pass
-		
-		newL= selct_url(links,url)   
-		newLink = newL[0] 
-		newLinktext1=newL[1]
-		#print(newLinktext1)
-		#print(newLinktext2)
-		######################## #### ################################################
-		Feature2 = func_urlAtSymbol(url)
-		Feature3 = func_urlDasheSymbol(url)
-		Feature4 = func_urlDotSymbol(url)  
-		Feature8 = func_ipAddress(url)
-		Feature9 = func_urLength(url)
-
-		#### Test on the content of the page #############################################
-		###### Function that verifies if the page asks for the password ###################
-		
-		Feature5 = func_CheckpasswordCreditcard(url)
-		Feature6 = func_MatchDomainTitle(url)
-		Feature7 = func_NRP(RP1)
-		#print(url)
-		##$$print(newLink)
-		##$$print(newLinktext1)
-		### Closing the first page #########################################################
-		links2 =[]
-		RP2=[]
-		
-		
-		try:    
-			url2 = checonnectionurll2(newLink)
-			driver2 = webdriver.Chrome('chromedriver.exe')
-			driver2.implicitly_wait(2) 
-			resp2= driver2.get(url2)
-			driver2.get_screenshot_as_file('screenshot2.png')
-			driver2.close()
-			response2 = requests.get(url2)
-			html2 = response2.text
-			soup2 = bs(html2)                                                     
-			#links = soup.find_all('href')
-			links2 = ([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^https://")} )] or 
-			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^http://")} )]  or 
-			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^#")} )] 
-			or [a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^/")} )] or 
-			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
-			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or
-			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or
-			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or 
-			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^http://[A-Za-z0-9]")})] or
-			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or 
-			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^https://[A-Za-z0-9]")} )]or
-			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^#")} )] or 
-			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})]or
-			[link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
-			[script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
-			##$$links2
-			RP2 =([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^#")} )] or
-			 [link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^#")} )]or
-			 [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})])
-			hash_object2 = hashlib.sha3_224(soup2.encode())
-			#print(hash_object2.hexdigest())
-		except:
-			pass
-		
-		newLink2 = selct_url2(links2, newLink)
-		############################ Test on url ############################################
-		Feature21 = func_urlAtSymbol(url2)
-		Feature31 = func_urlDasheSymbol(url2)
-		Feature41= func_urlDotSymbol(url2)  
-		Feature81 = func_ipAddress(url2)
-		Feature91 = func_urLength(url2)
-
-		
-
-		Feature51 = func_CheckpasswordCreditcard2(url2)
-		Feature61 = func_MatchDomainTitle2(url2)
-		Feature71 = func_NRP(RP2)
-		#### Closing of the second web page#######################################################
-
-		
-		try:
-			url3 = checonnectionurll3(newLink2)
-			driver3 = webdriver.Chrome('chromedriver.exe')
-			driver3.implicitly_wait(2) 
-			resp3= driver3.get(url3)
-			driver3.get_screenshot_as_file('screenshot3.png')
-			driver3.close()
-			response3 = requests.get(url3)
-			html3 = response3.text
-			soup3 = bs(html3)
-			RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
-			 [link.get('href') for link in soup3.findAll('link', attrs={'href': re.compile("^#")} )]or
-			 [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])
-		except:
-			pass
-		#hash_object3 = hashlib.md5(soup3.encode())
-		#print(hash_object3.hexdigest())
-		
-
-		Feature22 = func_urlAtSymbol(url3)
-		Feature32 = func_urlDasheSymbol(url3)
-		Feature42 = func_urlDotSymbol(url3) 
-		Feature82 = func_ipAddress(url3)
-		Feature92 = func_urLength(url3)
-
-		####### Test on the page content  ##############################
-		
-		Feature52 = func_CheckpasswordCreditcard3(url3)
-		Feature62 = func_MatchDomainTitle3(url3)
-		Feature72 = func_NRP3(RP3)
-	######### Closing the last web page##################################
-	######## hash of the second link select on url##########################
-		
 		try:
 			newLinktext1 = checonnectionurll4((newLinktext1))
 			response4 = requests.get(newLinktext1)
@@ -576,6 +565,7 @@ def predict():
 			writer.writerow({'Perceptual_similarity': codescore1(score1),'Text_similarity': codetestscore1(testscore1),'TesturlAtSymbol':GFeature2, 'TesturlDasheSymbol':GFeature3,
 							 'TesturlDotSymbol':GFeature4,'TestGoodCheckpwdCreditcard': GFeature5,'TestGoodMatchDomainTitle':GFeature6,
 							 'TestIPAdress':GFeature8,'TestGoodurLength':Feature9})
+				
 		score_file.close()
                     
     def RunData(file):
