@@ -18,7 +18,7 @@ from urllib.parse  import urlparse
 import hashlib
 from random import sample 
 import sys
-import 
+ 
 import lxml
 sys.setrecursionlimit(10000)
 
