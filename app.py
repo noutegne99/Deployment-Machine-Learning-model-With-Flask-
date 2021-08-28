@@ -170,7 +170,7 @@ def predict():
         return data1
 		
 
-	newL =[]
+	
 	def selct_url(links,url):
 		list11=[]
 		if(len(links)>=2):
@@ -380,6 +380,7 @@ def predict():
 		links =[]
 		RP1=[]
 		link2 =[]
+		newL =[]
 		RP3=[]
 		links3 =[]
 		RP3=[]
