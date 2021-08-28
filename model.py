@@ -15,7 +15,7 @@ from sklearn import metrics
 import pickle
 
 
-PhishingLegitimeSHA3224SS=pd.read_csv('/PhishingLegitimeSHA3224SS.csv')
+PhishingLegitimeSHA3224SS=pd.read_csv('PhishingLegitimeSHA3224SS.csv')
 df1 = PhishingLegitimeSHA3224SS
 ################################# THRESHOLDING OF TEXT AND PERCEPTION SCORES ##############################################
 for index in range(0,len(df1)): 
