@@ -35,6 +35,13 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     data1 = []
+	links =[]
+	RP1=[]
+	link2 =[]
+	newL =[]
+	RP3=[]
+	links3 =[]
+	RP3=[]
     if request.method == 'POST':
         url = request.form['url'] 
         data1 = [('{}'.format(url))]
@@ -172,13 +179,7 @@ def predict():
     #try:
     for n in range(len(data1)):
 	    url = data1[n]
-		links =[]
-		RP1=[]
-		link2 =[]
-		newL =[]
-		RP3=[]
-		links3 =[]
-		RP3=[]
+		
 		
 		#### Test on the content of the page ######################################################
 		def func_CheckpasswordCreditcard2(url2):            #f6
@@ -194,6 +195,7 @@ def predict():
 				return 1
 			else:
 				return -1
+		
 		def func_MatchDomainTitle2(url2):                  #f5
 
 			subdm2 = tldextract.extract(url2).subdomain
