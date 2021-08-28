@@ -156,6 +156,11 @@ def predict():
         return testscore1
 
         ############################################ First check on the URL
+	def func_NRP(RP1):
+		if len(RP1):
+			return -1
+		else:
+			return -1
     def checonnection(data):
         for j in range(len(data)):
             urlj = data[j]
@@ -167,11 +172,11 @@ def predict():
                 print("Fail connection")
         return data1
 		
-	def func_NRP(RP1):
+	"""def func_NRP(RP1):
 		if len(RP1)>=1:
 			return -1
 		else:
-			return 1
+			return 1"""
 
 	newL =[]
 	def selct_url(links,url):
