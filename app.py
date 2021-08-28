@@ -374,7 +374,7 @@ def predict():
 				urll1= url
 
 			return urll1	
-         def func_NPR1(RP1):
+        def func_NPR1(RP1):
             if len(RP1)>=1:
                 return -1
             else:
