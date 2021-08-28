@@ -171,13 +171,7 @@ def predict():
 
 	########################################################	
 	
-		
-	
-    def func_NPR1(RP1):
-		if len(RP1)>=1:
-			return -1
-		else:
-			return 1
+   
 
 	def selct_url2(links2, newLink):
 		if(len(links2)>=2):
@@ -380,6 +374,11 @@ def predict():
 				urll1= url
 
 			return urll1	
+         def func_NPR1(RP1):
+            if len(RP1)>=1:
+                return -1
+            else:
+                return 1
 		def func_NRP2(RP2):
 			if len(RP2)>=1:
 				return -1
