@@ -271,7 +271,16 @@ def predict():
 		#print(lisdmr2)
 	#print(newLink3)
 	#driver3.close()
-    
+    def checonnectionurll3(urll):
+		try :
+			request = requests.get(urll)
+			if request.status_code == 200:
+				urll1 = urll
+		except:
+			print("Fail connection")
+			urll1 = url2
+
+		return urll1
      #### Test on the content of the page ######################################################
     def func_CheckpasswordCreditcard2(url2):            #f6
 	response2 = requests.get(url2)
@@ -459,16 +468,7 @@ def predict():
                     Feature71 = func_NRP(RP2)
                     #### Closing of the second web page#######################################################
 
-                    def checonnectionurll3(urll):
-                        try :
-                            request = requests.get(urll)
-                            if request.status_code == 200:
-                                urll1 = urll
-                        except:
-                            print("Fail connection")
-                            urll1 = url2
-
-                        return urll1
+                    
                     try:
                         url3 = checonnectionurll3(newLink2)
                         driver3 = webdriver.Chrome('chromedriver.exe')
