@@ -170,6 +170,45 @@ def predict():
                             urll1= url
 
                         return urll1
+     #### Test on the content of the page ######################################################
+    def func_CheckpasswordCreditcard2(url2):            #f6
+	response2 = requests.get(url2)
+	html2 = response2.text
+	soup2 = bs(html2)
+	pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
+	[input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
+	[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+	[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+	[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+	if (len(pwdCredit2) == 0):
+	    return 1
+	else:
+	    return -1
+    def func_MatchDomainTitle2(url2):                  #f5
+
+	subdm2 = tldextract.extract(url2).subdomain
+	dmr2 = tldextract.extract(url2).domain
+	consubdm2 =''.join(e for e in subdm2.lower() if e.isalnum())
+	consdmr2 = ''.join(e for e in dmr2.lower() if e.isalnum())
+	response2 = requests.get(url2)
+	html2 = response2.text
+	soup2 = bs(html2)
+	try :
+	    if ((soup2.title.string) and (soup2.title.string.lower())):
+		    #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
+		if (re.search(consdmr2 , ''.join(e for e in soup2.title.string.lower() if e.isalnum()))==None):
+		    result1 = -1
+		else:
+		    result1 = 1
+		result= result1
+	    else:
+		result = -1
+	except:
+	    result = -1
+	return result
+		#print(lisdmr
+    ##$$print(newLink2)
+    #driver2.close()
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
 	
@@ -369,45 +408,7 @@ def predict():
                     Feature81 = func_ipAddress(url2)
                     Feature91 = func_urLength(url2)
 
-                    #### Test on the content of the page ######################################################
-                    def func_CheckpasswordCreditcard2(url2):            #f6
-                        response2 = requests.get(url2)
-                        html2 = response2.text
-                        soup2 = bs(html2)
-                        pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
-                        [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
-                        [label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-                        [label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-                        [label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-                        if (len(pwdCredit2) == 0):
-                            return 1
-                        else:
-                            return -1
-                    def func_MatchDomainTitle2(url2):                  #f5
-
-                        subdm2 = tldextract.extract(url2).subdomain
-                        dmr2 = tldextract.extract(url2).domain
-                        consubdm2 =''.join(e for e in subdm2.lower() if e.isalnum())
-                        consdmr2 = ''.join(e for e in dmr2.lower() if e.isalnum())
-                        response2 = requests.get(url2)
-                        html2 = response2.text
-                        soup2 = bs(html2)
-                        try :
-                            if ((soup2.title.string) and (soup2.title.string.lower())):
-                                    #lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
-                                if (re.search(consdmr2 , ''.join(e for e in soup2.title.string.lower() if e.isalnum()))==None):
-                                    result1 = -1
-                                else:
-                                    result1 = 1
-                                result= result1
-                            else:
-                                result = -1
-                        except:
-                            result = -1
-                        return result
-                                #print(lisdmr
-                    ##$$print(newLink2)
-                    #driver2.close()
+                   
 
                     Feature51 = func_CheckpasswordCreditcard2(url2)
                     Feature61 = func_MatchDomainTitle2(url2)
