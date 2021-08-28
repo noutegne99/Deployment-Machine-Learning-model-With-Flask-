@@ -584,7 +584,6 @@ def predict():
 			writer.writerow({'Perceptual_similarity': codescore1(score1),'Text_similarity': codetestscore1(testscore1),'TesturlAtSymbol':GFeature2, 'TesturlDasheSymbol':GFeature3,
 							 'TesturlDotSymbol':GFeature4,'TestGoodCheckpwdCreditcard': GFeature5,'TestGoodMatchDomainTitle':GFeature6,
 							 'TestIPAdress':GFeature8,'TestGoodurLength':Feature9})
-				
 		score_file.close()
                     
     def RunData(file):
