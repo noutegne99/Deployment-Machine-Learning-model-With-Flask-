@@ -35,7 +35,7 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     data1 = []
-	links = []
+	
 	RP1 = []
 	link2 = []
 	newL = []
