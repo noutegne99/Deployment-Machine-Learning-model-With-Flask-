@@ -1,15 +1,14 @@
-
+python==3.7.6
 lxml
 selenium
 dhash
 tldextract
 Pillow
 bs4
-numpy==1.11.0 
+numpy
 flask 
 gunicorn
 matplotlib
-scikit-learn==0.22.1
 chromedriver
 pandas
 requests 
