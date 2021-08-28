@@ -160,6 +160,16 @@ def predict():
             except:
                 print("Fail connection")
         return data1
+    def checonnectionurll2(urll):
+                        try :
+                            request = requests.get(urll)
+                            if request.status_code == 200:
+                                urll1 = urll
+                        except:
+                            print("Fail connection")
+                            urll1= url
+
+                        return urll1
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
 	
@@ -297,19 +307,10 @@ def predict():
                     ### Closing the first page #########################################################
                     links2 =[]
                     RP2=[]
-                    def checonnectionurll2(urll):
-                        try :
-                            request = requests.get(urll)
-                            if request.status_code == 200:
-                                urll1 = urll
-                        except:
-                            print("Fail connection")
-                            urll1= url
-
-                        return urll1
-                    url2 = checonnectionurll2(newLink)
+                    ###checkcon
+                    
                     try:    
-                        
+                        url2 = checonnectionurll2(newLink)
                         driver2 = webdriver.Chrome('chromedriver.exe')
                         driver2.implicitly_wait(2) 
                         resp2= driver2.get(url2)
