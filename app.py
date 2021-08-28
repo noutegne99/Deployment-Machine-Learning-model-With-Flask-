@@ -69,17 +69,17 @@ def predict():
     ################ Funn that checks the length of an url ##################################################
     def func_urLength(url):      #for j in range(len(data)):                                #f9
         urlength = len(url) 
-		if(urlength > 80):
-			return -1
-		else:
-			return 1 
+	    if(urlength > 80):
+             return -1
+	    else:
+	         return 1 
    ##### Function that checks the number of dots the resource ################################
     def func_urlDotSymbol(url):                                  #f4
-		dots= urlparse(url).netloc
-		if dots.count('.')<= 3 :
-			return 1
-		else:
-			return -1
+        dots= urlparse(url).netloc
+        if dots.count('.')<= 3 :
+             return 1
+        else:
+             return -1
     #######Decision groups########################################################################
     def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
         if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
