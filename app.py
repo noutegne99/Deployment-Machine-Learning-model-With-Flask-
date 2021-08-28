@@ -168,9 +168,7 @@ def predict():
             except:
                 print("Fail connection")
         return data1
-		
-
-	
+	############################################################	
 	def selct_url(links,url):
 		list11=[]
 		if(len(links)>=2):
