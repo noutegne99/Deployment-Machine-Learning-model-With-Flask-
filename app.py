@@ -364,7 +364,7 @@ def predict():
 			except:
 				  result = -1
 			return result	
-		def checonnectionurll2(urll):
+	    def checonnectionurll2(urll):
 			try :
 				request = requests.get(urll)
 				if request.status_code == 200:
