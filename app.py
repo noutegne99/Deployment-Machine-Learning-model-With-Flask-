@@ -171,9 +171,7 @@ def predict():
 
 	########################################################	
 	
-   
-
-	def selct_url2(links2, newLink):
+   def selct_url2(links2, newLink):
 		if(len(links2)>=2):
 			list_of_random_items2=random.sample(links2,2)
 			newLink2=list_of_random_items2[0]
@@ -240,7 +238,7 @@ def predict():
 			return -1
 		else:
 			return 1
-    def func_CheckpasswordCreditcard3(url3):            #f6
+       def func_CheckpasswordCreditcard3(url3):            #f6
 		response3 = requests.get(url3)
 		html3 = response3.text
 		soup3 = bs(html3)
