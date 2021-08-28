@@ -172,60 +172,7 @@ def predict():
 	########################################################	
 	
 		
-	def func_CheckpasswordCreditcard(url):            #f6
-		response = requests.get(url)
-		html = response.text
-		soup = bs(html)
-		pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
-		[input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
-		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-		if (len(pwdCredit) == 0):
-			return 1
-		else:
-			return -1
-	def func_MatchDomainTitle(url): #f5
-		import tldextract
-		import requests
-		from bs4 import BeautifulSoup as bs
-		subdm = tldextract.extract(url).subdomain
-		#print(subdm)
-		dmr = tldextract.extract(url).domain
-		#print(dmr)
-		consubdm =''.join(e for e in subdm.lower() if e.isalnum())
-		consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
-		response = requests.get(url)
-		html = response.text
-		soup = bs(html)
-		try :
-			if (soup.title.string):
-					#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
-				if (re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))==None):
-					result1 = -1
-				else:
-					result1 = 1
-				result= result1
-			else:
-				result = -1
-		except:
-			  result = -1
-		return result	
-	def checonnectionurll2(urll):
-		try :
-			request = requests.get(urll)
-			if request.status_code == 200:
-				urll1 = urll
-		except:
-			print("Fail connection")
-			urll1= url
-
-		return urll1	
-	def func_NRP2(RP2):
-		if len(RP2)>=1:
-			return -1
-		else:
-			return 1
+	
     def func_NPR1(RP1):
 		if len(RP1)>=1:
 			return -1
@@ -384,6 +331,60 @@ def predict():
 				list11.append(newLinktext1)
 				#print(list11)
 			return list11
+		def func_CheckpasswordCreditcard(url):            #f6
+		response = requests.get(url)
+		html = response.text
+		soup = bs(html)
+		pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
+		[input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
+		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+		[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+		if (len(pwdCredit) == 0):
+			return 1
+		else:
+			return -1
+		def func_MatchDomainTitle(url): #f5
+			import tldextract
+			import requests
+			from bs4 import BeautifulSoup as bs
+			subdm = tldextract.extract(url).subdomain
+			#print(subdm)
+			dmr = tldextract.extract(url).domain
+			#print(dmr)
+			consubdm =''.join(e for e in subdm.lower() if e.isalnum())
+			consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
+			response = requests.get(url)
+			html = response.text
+			soup = bs(html)
+			try :
+				if (soup.title.string):
+						#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
+					if (re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))==None):
+						result1 = -1
+					else:
+						result1 = 1
+					result= result1
+				else:
+					result = -1
+			except:
+				  result = -1
+			return result	
+		def checonnectionurll2(urll):
+			try :
+				request = requests.get(urll)
+				if request.status_code == 200:
+					urll1 = urll
+			except:
+				print("Fail connection")
+				urll1= url
+
+			return urll1	
+		def func_NRP2(RP2):
+			if len(RP2)>=1:
+				return -1
+			else:
+				return 1
 		try :
 			driver = webdriver.Chrome('chromedriver.exe')
 			driver.implicitly_wait(2) 
