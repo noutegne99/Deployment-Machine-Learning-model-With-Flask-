@@ -32,7 +32,16 @@ def predict():
     if request.method == 'POST':
         url = request.form['url']
         data1 = [('{}'.format(url))]
-        
+    def checonnectionurll2(urll):
+		try :
+			request = requests.get(urll)
+			if request.status_code == 200:
+				urll1 = urll
+		except:
+			print("Fail connection")
+			urll1= url
+
+		return urll1    
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
         if ats >=1 :
@@ -146,16 +155,7 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
-    def checonnectionurll2(urll):
-		try :
-			request = requests.get(urll)
-			if request.status_code == 200:
-				urll1 = urll
-		except:
-			print("Fail connection")
-			urll1= url
-
-		return urll1
+    
     ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
