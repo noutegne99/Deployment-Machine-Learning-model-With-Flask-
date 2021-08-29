@@ -146,7 +146,16 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
+    def checonnectionurll2(urll):
+		try :
+			request = requests.get(urll)
+			if request.status_code == 200:
+				urll1 = urll
+		except:
+			print("Fail connection")
+			urll1= url
 
+		return urll1
     ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
@@ -295,16 +304,6 @@ def predict():
                     ### Closing the first page #########################################################
                     links2 =[]
                     RP2=[]
-                    def checonnectionurll2(urll):
-                        try :
-                            request = requests.get(urll)
-                            if request.status_code == 200:
-                                urll1 = urll
-                        except:
-                            print("Fail connection")
-                            urll1= url
-
-                        return urll1
                     
                     try:
 						url2 = checonnectionurll2(newLink)
