@@ -68,7 +68,7 @@ def predict():
     ################ Funn that checks the length of an url ##################################################
     def func_urLength(url):                                      #f9
 		l = len(url) 
-		if(urlength > 80):
+		if(l > 80):
 			return -1
 		else:
 			return 1 
