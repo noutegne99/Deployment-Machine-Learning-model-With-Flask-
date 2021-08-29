@@ -51,7 +51,7 @@ def predict():
             return -1
         else:
             return 1
-	def func_urlLength(url):
+	def func_urLength(url):
 		l = len(url)
 		if(l>80):
 			return -1
