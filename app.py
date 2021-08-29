@@ -420,8 +420,9 @@ def predict():
                             urll1 = url2
 
                         return urll1
-					url3 = 0
+					
                     try:
+						url3 = 0
 						url3 = checonnectionurll3(newLink2)
                         driver3 = webdriver.Chrome('chromedriver.exe')
                         driver3.implicitly_wait(2) 
