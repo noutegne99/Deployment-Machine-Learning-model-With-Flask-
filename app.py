@@ -305,10 +305,8 @@ def predict():
                             urll1= url
 
                         return urll1
-
+                    url2 = checonnectionurll2(newLink)
                     try:
-						global url2    
-                        url2 = checonnectionurll2(newLink)
                         driver2 = webdriver.Chrome('chromedriver.exe')
                         driver2.implicitly_wait(2) 
                         resp2= driver2.get(url2)
@@ -422,9 +420,8 @@ def predict():
                             urll1 = url2
 
                         return urll1
+					url3 = checonnectionurll3(newLink2)
                     try:
-						global url3
-                        url3 = checonnectionurll3(newLink2)
                         driver3 = webdriver.Chrome('chromedriver.exe')
                         driver3.implicitly_wait(2) 
                         resp3= driver3.get(url3)
