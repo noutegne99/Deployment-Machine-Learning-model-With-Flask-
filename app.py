@@ -147,7 +147,7 @@ def predict():
             testscore1 = 1
         return testscore1
 
-        ############################################ First check on the URL
+    ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
             urlj = data[j]
@@ -305,8 +305,9 @@ def predict():
                             urll1= url
 
                         return urll1
-                    url2 = checonnectionurll2(newLink)
+                    
                     try:
+						url2 = checonnectionurll2(newLink)
                         driver2 = webdriver.Chrome('chromedriver.exe')
                         driver2.implicitly_wait(2) 
                         resp2= driver2.get(url2)
@@ -408,7 +409,7 @@ def predict():
                     Feature51 = func_CheckpasswordCreditcard2(url2)
                     Feature61 = func_MatchDomainTitle2(url2)
                     Feature71 = func_NRP(RP2)
-                    #### Closing of the second web page#######################################################
+                    #### Closing of the second web page  ###################################################################
 
                     def checonnectionurll3(urll):
                         try :
@@ -420,10 +421,8 @@ def predict():
                             urll1 = url2
 
                         return urll1
-					
+					url3 = checonnectionurll3(newLink2)
                     try:
-						url3 = 0
-						url3 = checonnectionurll3(newLink2)
                         driver3 = webdriver.Chrome('chromedriver.exe')
                         driver3.implicitly_wait(2) 
                         resp3= driver3.get(url3)
