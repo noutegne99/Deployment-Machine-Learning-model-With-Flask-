@@ -49,6 +49,12 @@ def predict():
             return -1
         else:
             return 1
+	def func_urLenth(url):
+		urlength = len(url)
+		if(urlength > 80):
+			return -1
+		else:
+			return -1
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -64,12 +70,12 @@ def predict():
         else:
             return 1
     ################ Funn that checks the length of an url ##################################################
-    def func_urLength(url):                                      #f9
+    """def func_urLength(url):                                      #f9
 		urlength = len(url) 
 		if(urlength > 80):
 			return -1
 		else:
-			return 1 
+			return 1 """ 
    ##### Function that checks the number of dots the resource ################################
     def func_urlDotSymbol(url):                                  #f4
 		dots= urlparse(url).netloc
