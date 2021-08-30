@@ -49,6 +49,7 @@ def predict():
             return -1
         else:
             return 1
+	#######################################################################################################################
 	def func_urLenth(url):
 		urlength = len(url)
 		if(urlength > 80):
