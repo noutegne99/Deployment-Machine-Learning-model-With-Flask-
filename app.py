@@ -307,7 +307,7 @@ def predict():
                     RP2=[]
                     
                     try:
-						url2 = checonnectionurll2(newLink)
+						            url2 = checonnectionurll2(newLink)
                         driver2 = webdriver.Chrome('chromedriver.exe')
                         driver2.implicitly_wait(2) 
                         resp2= driver2.get(url2)
