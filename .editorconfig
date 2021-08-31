@@ -10,9 +10,9 @@ indent_style = space
 indent_size = 4
 
 # 4 space indentation
-[*.py]
+"""[*.py]
 indent_style = tab
-indent_size = 4
+indent_size = 4"""
 
 # Unix-style newlines with a newline ending every file
 [*]
