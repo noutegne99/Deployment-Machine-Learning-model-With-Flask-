@@ -50,12 +50,12 @@ def predict():
         else:
             return 1
 	#######################################################################################################################
-	def func_urLength(url):
-		urlength = len(url)
-		if(urlength > 80):
-			return -1
-		else:
-			return -1
+        def func_urLength(url):
+                urlength = len(url)
+                if(urlength > 80):
+                        return -1
+                else:
+                        return -1
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -428,8 +428,9 @@ def predict():
                             urll1 = url2
 
                         return urll1
-					url3 = checonnectionurll3(newLink2)
+					
                     try:
+                        url3 = checonnectionurll3(newLink2)
                         driver3 = webdriver.Chrome('chromedriver.exe')
                         driver3.implicitly_wait(2) 
                         resp3= driver3.get(url3)
