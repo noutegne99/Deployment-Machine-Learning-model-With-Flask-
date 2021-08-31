@@ -153,18 +153,18 @@ def checonnection(data):
 			print("Fail connection")
 	return data1
 ####### Test on the page content  ##############################
-		def func_CheckpasswordCreditcard3(url3):            #f6
-			response3 = requests.get(url3)
-			html3 = response3.text
-			soup3 = bs(html3, 'lxml')
-			pwdCredit3 = ([input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^idcard")} )] or
-			[input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^password")} )]or
-								 [label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
-			[label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_username")} )] or
-			[label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
-			if (len(pwdCredit3) == 0):
-				return 1
-			else:
+def func_CheckpasswordCreditcard3(url3):            #f6
+    response3 = requests.get(url3)
+    html3 = response3.text
+    soup3 = bs(html3, 'lxml')
+    pwdCredit3 = ([input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^idcard")} )] or
+    [input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^password")} )]or
+                         [label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
+    [label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_username")} )] or
+    [label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_user_no")} )])
+    if (len(pwdCredit3) == 0):
+        return 1
+    else:
         return -1
 def func_MatchDomainTitle3(url3): #f5
 
@@ -192,9 +192,7 @@ def func_MatchDomainTitle3(url3): #f5
     #print(lisdmr2)
 #print(newLink3)
 #driver3.close()
-Feature52 = func_CheckpasswordCreditcard3(url3)
-Feature62 = func_MatchDomainTitle3(url3)
-Feature72 = func_NRP3(RP3)
+
 ######### Closing the last web page##################################
 ######## hash of the second link select on url##########################
 def checonnectionurll4(urll):
@@ -507,6 +505,10 @@ def predict():
 		Feature82 = func_ipAddress(url3)
 		Feature92 = func_urLength(url3)
         
+        
+        Feature52 = func_CheckpasswordCreditcard3(url3)
+        Feature62 = func_MatchDomainTitle3(url3)
+        Feature72 = func_NRP3(RP3)
         try:
             newLinktext1 = checonnectionurll4((newLinktext1))
             response4 = requests.get(newLinktext1)
