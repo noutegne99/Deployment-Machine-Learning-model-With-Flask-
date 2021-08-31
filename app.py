@@ -208,15 +208,7 @@ def checonnectionurll4(urll):
 
     return urll1
             #return url2
-try:
-    newLinktext1 = checonnectionurll4((newLinktext1))
-    response4 = requests.get(newLinktext1)
-    html4 = response4.text
-    soup4 = bs(html4, 'lxml')
-    hash_object4 = hashlib.sha3_224(soup4.encode())
-   # print(hash_object4.hexdigest())
-except:
-    pass
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -514,7 +506,16 @@ def predict():
 		Feature42 = func_urlDotSymbol(url3) 
 		Feature82 = func_ipAddress(url3)
 		Feature92 = func_urLength(url3)
-
+        
+        try:
+            newLinktext1 = checonnectionurll4((newLinktext1))
+            response4 = requests.get(newLinktext1)
+            html4 = response4.text
+            soup4 = bs(html4, 'lxml')
+            hash_object4 = hashlib.sha3_224(soup4.encode())
+           # print(hash_object4.hexdigest())
+        except:
+            pass
 		
 		GFeature2 = Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22)
 		GFeature3 = Goodfunc_urlDasheSymbol(Feature3,Feature31,Feature32)
