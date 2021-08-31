@@ -50,12 +50,7 @@ def predict():
         else:
             return 1
 	#######################################################################################################################
-    def func_urLength(url):
-		urlength = len(url)
-        if(urlength > 80):
-			return -1
-        else:
-            return -1
+    
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -181,6 +176,12 @@ def predict():
     chrome_options.add_argument('disable-infobars')
     #try:
     for n in range(len(data1)):
+		def func_urLength(url):
+			urlength = len(url)
+			if(urlength > 80):
+				return -1
+			else:
+				return -1
 		url = data1[n]
 		links =[]
 		RP1=[]
