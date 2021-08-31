@@ -160,7 +160,7 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
 	data1 = []
-    if request.method == 'POST':
+    if (request.method == 'POST'):
         url = request.form['url']
         data1 = [('{}'.format(url))]
 	#try:
