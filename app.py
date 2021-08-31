@@ -26,11 +26,7 @@ chrome_options.add_argument('disable-infobars')
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
 
-@app.route('/')
-def home():
-    return render_template('index.html')
 
-@app.route('/predict',methods=[ 'POST'])
 def func_urlAtSymbol(url):                                    #f2
 	ats = url.count('@')
 	if ats >=1 :
@@ -157,13 +153,17 @@ def checonnection(data):
 			print("Fail connection")
 	return data1
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/predict',methods=[ 'POST'])
 def predict():
 	data1 = []
     if request.method == 'POST':
         url = request.form['url']
         data1 = [('{}'.format(url))]
-   
-    #try:
+	#try:
     for n in range(len(data1)):
 		url = data1[n]
 		links =[]
