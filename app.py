@@ -213,10 +213,9 @@ def home():
 @app.route('/', methods=['GET', 'POST'])
 def predict():
     data1 = []
-	errors = []
     #results = {}
     if request.method == 'POST':
-	# get url that the person has entered
+	    errors = []
         try:
             url = request.form['url']
             data1 = [('{}'.format(url))]
