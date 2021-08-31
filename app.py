@@ -143,12 +143,7 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
-    links =[]
-	link2 =[]
-	RP3=[]
-	RP1=[]
-	links3 =[]
-	RP3=[]
+    
         ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
