@@ -28,12 +28,12 @@ def home():
     return render_template('index.html')
 
 @app.route('/predict',methods=[ 'POST'])
- def func_urlAtSymbol(url):                                    #f2
-        ats = url.count('@')
-        if ats >=1 :
-            return -1
-        else:
-            return 1
+def func_urlAtSymbol(url):                                    #f2
+	ats = url.count('@')
+	if ats >=1 :
+		return -1
+	else:
+		return 1
 ####################################### Function that counts the number of dash in the domain name. ########################
 def func_urlDasheSymbol(url):
 	tldextractdomain=tldextract.extract(url).domain
@@ -61,18 +61,18 @@ def func_ipAddress(url) :
 ################ Funn that checks the length of an url ##################################################
 def func_urLength(url):                                      #f9
 	#for j in range(len(data)):
-		urlength = len(url) 
-		if(urlength > 80):
-			return -1
-		else:
-			return 1 
+	urlength = len(url) 
+	if(urlength > 80):
+		return -1
+	else:
+		return 1 
 ##### Function that checks the number of dots the resource ################################
 def func_urlDotSymbol(url):                                  #f4
-		dots= urlparse(url).netloc
-		if dots.count('.')<= 3 :
-			return 1
-		else:
-			return -1
+	dots= urlparse(url).netloc
+	if dots.count('.')<= 3 :
+		return 1
+	else:
+		return -1
 #######Decision groups########################################################################
 def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
 	if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
@@ -158,6 +158,7 @@ def checonnection(data):
 
 chrome_options.add_argument('disable-infobars')
 def predict():
+	data1 = []
     if request.method == 'POST':
         url = request.form['url']
         data1 = [('{}'.format(url))]
@@ -172,7 +173,7 @@ def predict():
 		links3 =[]
 		RP3=[]
 		try :
-			driver = webdriver.Chrome('c:/chromedriver.exe')
+			driver = webdriver.Chrome('chromedriver.exe')
 			driver.implicitly_wait(2) 
 			resp= driver.get(url)
 			driver.get_screenshot_as_file('screenshot1.png')
