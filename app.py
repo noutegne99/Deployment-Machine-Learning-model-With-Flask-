@@ -1,36 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@noutegne99
-noutegne99 /
-Deployment-Machine-Learning-model-With-Flask-
-
-1
-0
-
-    0
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-
-    Settings
-
-Deployment-Machine-Learning-model-With-Flask-/app.py /
-@noutegne99
-noutegne99 Update app.py
-Latest commit 1770eb7 2 hours ago
-History
-1 contributor
-595 lines (557 sloc) 22.2 KB
 import numpy as np
 from flask import Flask, request,jsonify,render_template
 import pickle
