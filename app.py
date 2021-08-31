@@ -160,19 +160,7 @@ def predict():
     chrome_options.add_argument('disable-infobars')
     #try:
     for n in range(len(data1)):
-		def func_urLength(url):
-			urlength = len(url)
-			if(urlength > 80):
-				return -1
-			else:
-				return -1
-		##### Function that checks the number of dots the resource ################################
-		def func_urlDotSymbol(url):                                  #f4
-			dots= urlparse(url).netloc
-			if dots.count('.')<= 3 :
-				return 1
-			else:
-				return -1
+		
 		#####################################################################
 		def checonnectionurll2(urll):
 			try :
@@ -230,7 +218,19 @@ def predict():
 				return -1
 			else:
 				return 1
-
+        def func_urLength(url):
+			urlength = len(url)
+			if(urlength > 80):
+				return -1
+			else:
+				return -1
+		##### Function that checks the number of dots the resource ################################
+		def func_urlDotSymbol(url):                                  #f4
+			dots= urlparse(url).netloc
+			if dots.count('.')<= 3 :
+				return 1
+			else:
+				return -1   
 		newL =[]
 		def selct_url(links,url):
 			list11=[]
@@ -317,7 +317,7 @@ def predict():
 		RP2=[]
 
 		try:
-						url2 = checonnectionurll2(newLink)
+			url2 = checonnectionurll2(newLink)
 			driver2 = webdriver.Chrome('chromedriver.exe')
 			driver2.implicitly_wait(2) 
 			resp2= driver2.get(url2)
