@@ -76,7 +76,7 @@ def predict():
 		if(urlength > 80):
 			return -1
 		else:
-			return 1 """ 
+			return 1 """
    ##### Function that checks the number of dots the resource ################################
     def func_urlDotSymbol(url):                                  #f4
 		dots= urlparse(url).netloc
