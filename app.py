@@ -143,7 +143,12 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
-
+    links =[]
+	RP1=[]
+	link2 =[]
+	RP3=[]
+	links3 =[]
+	RP3=[]
         ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
@@ -162,12 +167,7 @@ def predict():
     #try:
     for n in range(len(data1)):
 	    url = data1[n]
-		links =[]
-		RP1=[]
-		link2 =[]
-		RP3=[]
-		links3 =[]
-		RP3=[]
+		
 		try :
 			driver = webdriver.Chrome('chromedriver.exe')
 			driver.implicitly_wait(2) 
