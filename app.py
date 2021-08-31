@@ -52,12 +52,7 @@ def predict():
         else:
             return 1
 	##########################################################################################################################
-	def func_urLength(url):
-		l = len(url)
-		if(l > 80):
-			return -1
-		else:
-			return 1
+	
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -218,7 +213,12 @@ def predict():
 				return -1
 			else:
 				return 1
-
+        def func_urLength(url):
+			l = len(url)
+			if(l > 80):
+				return -1
+			else:
+				return 1
 		newL =[]
 		def selct_url(links,url):
 			list11=[]
