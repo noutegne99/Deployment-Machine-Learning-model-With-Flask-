@@ -74,13 +74,7 @@ def predict():
 			return -1
 		else:
 			return 1""" 
-   ##### Function that checks the number of dots the resource ################################
-    def func_urlDotSymbol(url):                                  #f4
-		dots= urlparse(url).netloc
-		if dots.count('.')<= 3 :
-			return 1
-		else:
-			return -1
+   #
     #######Decision groups########################################################################
     def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
         if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
@@ -208,6 +202,13 @@ def predict():
 			print(url)
 		except:
 			pass
+		#### Function that checks the number of dots the resource ################################
+		def func_urlDotSymbol(url):                                  #f4
+			dots = urlparse(url).netloc
+			if dots.count('.')<= 3 :
+				return 1
+			else:
+				return -1
 		def func_NRP(RP1):
 			if len(RP1)>=1:
 				return -1
