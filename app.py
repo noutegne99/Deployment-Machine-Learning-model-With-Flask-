@@ -159,9 +159,7 @@ def predict():
 	
     chrome_options.add_argument('disable-infobars')
     #try:
-    for n in range(len(data1)):
-		
-		   
+    for n in range(len(data1)):   
 		url = data1[n]
 		links =[]
 		RP1=[]
