@@ -220,10 +220,8 @@ def predict():
             url = request.form['url']
             data1 = [('{}'.format(url))]
         except:
-            errors.append(
-                "Unable to get URL. Please make sure it's valid and try again."
-            )
-            return render_template('index.html')
+            errors.append("Unable to get URL. Please make sure it's valid and try again.")
+            #return render_template('index.html')
 	#try:
     for n in range(len(data1)):
 		url = data1[n]
