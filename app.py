@@ -210,13 +210,21 @@ def checonnectionurll4(urll):
 @app.route('/')
 def home():
     return render_template('index.html')
-
-@app.route('/predict',methods=[ 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def predict():
-	data1 = []
-    if request.method == "POST":
-        url = request.form['url']
-        data1 = [('{}'.format(url))]
+    data1 = []
+	errors = []
+    #results = {}
+    if request.method == 'POST':
+	# get url that the person has entered
+        try:
+            url = request.form['url']
+            data1 = [('{}'.format(url))]
+        except:
+            errors.append(
+                "Unable to get URL. Please make sure it's valid and try again."
+            )
+            return render_template('index.html')
 	#try:
     for n in range(len(data1)):
 		url = data1[n]
