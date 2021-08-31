@@ -161,17 +161,7 @@ def predict():
     #try:
     for n in range(len(data1)):
 		
-		#####################################################################
-		def checonnectionurll2(urll):
-			try :
-				request = requests.get(urll)
-				if request.status_code == 200:
-					urll1 = urll
-			except:
-				print("Fail connection")
-				urll1= url
-
-			return urll1    
+		   
 		url = data1[n]
 		links =[]
 		RP1=[]
@@ -232,6 +222,17 @@ def predict():
 			else:
 				return -1   
 		newL =[]
+		#####################################################################
+		def checonnectionurll2(urll):
+			try :
+				request = requests.get(urll)
+				if request.status_code == 200:
+					urll1 = urll
+			except:
+				print("Fail connection")
+				urll1= url
+
+			return urll1 
 		def selct_url(links,url):
 			list11=[]
 			if(len(links)>=2):
