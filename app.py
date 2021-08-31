@@ -28,140 +28,140 @@ def home():
     return render_template('index.html')
 
 @app.route('/predict',methods=[ 'POST'])
-def predict():
-    if request.method == 'POST':
-        url = request.form['url']
-        data1 = [('{}'.format(url))]
-        
-    def func_urlAtSymbol(url):                                    #f2
+ def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
         if ats >=1 :
             return -1
         else:
             return 1
-    ####################################### Function that counts the number of dash in the domain name. ########################
-    def func_urlDasheSymbol(url):
-        tldextractdomain=tldextract.extract(url).domain
-        tldextractsubdomain=tldextract.extract(url).subdomain    #f3
-        Dashe = tldextractdomain.count('-') 
-        Dashe1 = tldextractsubdomain.count('-')
-        if (Dashe>1 ) or (Dashe1 >=4):
-            return -1
-        else:
-            return 1
-    ##############  Function that checks if the domain name is an IPV4 address ##############################
-    def func_ipAddress(url) :
-        tldextractsubdomain=tldextract.extract(url).subdomain   #f8
-        tldextractdomain=tldextract.extract(url).domain
-        #print(tldextractsubdomain)
-        #print(tldextractdomain)
-        fffff = (re.findall(r'[0-9]+(?:\.[0-9]+){3}', tldextract.extract(url).subdomain ))
-        ffff = (re.findall(r'[0-9]+(?:\.[0-9]+){3}', tldextract.extract(url).domain))
-        #print(fffff)
-        #print(ffff)
-        if (fffff or ffff):
-            return -1
-        else:
-            return 1
-    ################ Funn that checks the length of an url ##################################################
-    def func_urLength(url):                                      #f9
-        #for j in range(len(data)):
-            urlength = len(url) 
-            if(urlength > 80):
-                return -1
-            else:
-                return 1 
-   ##### Function that checks the number of dots the resource ################################
-    def func_urlDotSymbol(url):                                  #f4
-            dots= urlparse(url).netloc
-            if dots.count('.')<= 3 :
-                return 1
-            else:
-                return -1
-    #######Decision groups########################################################################
-    def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
-        if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
-            return -1
-        else:
-            return 1
+####################################### Function that counts the number of dash in the domain name. ########################
+def func_urlDasheSymbol(url):
+	tldextractdomain=tldextract.extract(url).domain
+	tldextractsubdomain=tldextract.extract(url).subdomain    #f3
+	Dashe = tldextractdomain.count('-') 
+	Dashe1 = tldextractsubdomain.count('-')
+	if (Dashe>1 ) or (Dashe1 >=4):
+		return -1
+	else:
+		return 1
+##############  Function that checks if the domain name is an IPV4 address ##############################
+def func_ipAddress(url) :
+	tldextractsubdomain=tldextract.extract(url).subdomain   #f8
+	tldextractdomain=tldextract.extract(url).domain
+	#print(tldextractsubdomain)
+	#print(tldextractdomain)
+	fffff = (re.findall(r'[0-9]+(?:\.[0-9]+){3}', tldextract.extract(url).subdomain ))
+	ffff = (re.findall(r'[0-9]+(?:\.[0-9]+){3}', tldextract.extract(url).domain))
+	#print(fffff)
+	#print(ffff)
+	if (fffff or ffff):
+		return -1
+	else:
+		return 1
+################ Funn that checks the length of an url ##################################################
+def func_urLength(url):                                      #f9
+	#for j in range(len(data)):
+		urlength = len(url) 
+		if(urlength > 80):
+			return -1
+		else:
+			return 1 
+##### Function that checks the number of dots the resource ################################
+def func_urlDotSymbol(url):                                  #f4
+		dots= urlparse(url).netloc
+		if dots.count('.')<= 3 :
+			return 1
+		else:
+			return -1
+#######Decision groups########################################################################
+def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
+	if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
+		return -1
+	else:
+		return 1
 
-    def Goodfunc_urlDasheSymbol(Feature3,Feature31,Feature32):
-        if (Feature3==-1 or Feature31==-1 or Feature32 ==-1):
-            return -1
-        else:
-            return 1
+def Goodfunc_urlDasheSymbol(Feature3,Feature31,Feature32):
+	if (Feature3==-1 or Feature31==-1 or Feature32 ==-1):
+		return -1
+	else:
+		return 1
 
-    def Goodfunc_urlDotSymbol(Feature4,Feature41,Feature42):
-        if (Feature4==-1 or Feature41==-1 or Feature42==-1):
-            return -1
-        else:
-            return 1
+def Goodfunc_urlDotSymbol(Feature4,Feature41,Feature42):
+	if (Feature4==-1 or Feature41==-1 or Feature42==-1):
+		return -1
+	else:
+		return 1
 
-    def Goodfunc_CheckpasswordCreditcard(Feature5,Feature51,Feature52):
-        if (Feature5==-1 or Feature51==-1 or Feature52 ==-1):
-            return -1
-        else:
-            return 1
-    def Goodfunc_MatchDomainTitle(Feature6,Feature61,Feature62):
-        if (Feature6==-1 or Feature61==-1 or Feature62==-1):
-            return -1
-        else:
-            return 1
-    def Good_func_NRP(Feature7,Feature71,Feature72):
-        if (Feature7 == -1) or (Feature71==-1 ) or (Feature72==-1):
-            return -1
-        else:
-            return 1
-    def Good_func_ipAddress(Feature8,Feature81,Feature82):
-        if (Feature8 ==-1) or (Feature81==-1 ) or (Feature82==-1):
-            return -1
-        else:
-            return 1
-    def  Good_func_urLength(Feature9,Feature91,Feature92):
-        if ((Feature9==-1 or Feature91 ==-1 or Feature92) ==-1):
-            return 1
-        else:
-            return -1
+def Goodfunc_CheckpasswordCreditcard(Feature5,Feature51,Feature52):
+	if (Feature5==-1 or Feature51==-1 or Feature52 ==-1):
+		return -1
+	else:
+		return 1
+def Goodfunc_MatchDomainTitle(Feature6,Feature61,Feature62):
+	if (Feature6==-1 or Feature61==-1 or Feature62==-1):
+		return -1
+	else:
+		return 1
+def Good_func_NRP(Feature7,Feature71,Feature72):
+	if (Feature7 == -1) or (Feature71==-1 ) or (Feature72==-1):
+		return -1
+	else:
+		return 1
+def Good_func_ipAddress(Feature8,Feature81,Feature82):
+	if (Feature8 ==-1) or (Feature81==-1 ) or (Feature82==-1):
+		return -1
+	else:
+		return 1
+def  Good_func_urLength(Feature9,Feature91,Feature92):
+	if ((Feature9==-1 or Feature91 ==-1 or Feature92) ==-1):
+		return 1
+	else:
+		return -1
 
-    def hamming_distance(string1, string2): 
-        distance = 0
-        L = len(string1)
-        for i in range(L):
-            if string1[i] != string2[i]:
-                distance += 1
-        return distance
-    def concat_ints(a, b):
-        return a*(10**len(str(b)))+b
-    
-    def codescore1(score1): 
-        if( score1 == 0 or score1>10 or score1<-10):
-            score1 = -1
-        else:
-            score1 = 1
-        return score1
+def hamming_distance(string1, string2): 
+	distance = 0
+	L = len(string1)
+	for i in range(L):
+		if string1[i] != string2[i]:
+			distance += 1
+	return distance
+def concat_ints(a, b):
+	return a*(10**len(str(b)))+b
 
-    def codetestscore1(testscore1):
-        if( testscore1 == 0 or testscore1>5 or testscore1<-5):
-            testscore1 = -1
-        else:
-            testscore1 = 1
-        return testscore1
+def codescore1(score1): 
+	if( score1 == 0 or score1>10 or score1<-10):
+		score1 = -1
+	else:
+		score1 = 1
+	return score1
 
-        ############################################ First check on the URL
-    def checonnection(data):
-        for j in range(len(data)):
-            urlj = data[j]
-            try :
-                request = requests.get(urlj)
-                if request.status_code == 200:
-                     data1.append(urlj)
-            except:
-                print("Fail connection")
-        return data1
-    chrome_options = webdriver.ChromeOptions()
-    # chrome_options.add_argument('--headless')
-	
-    chrome_options.add_argument('disable-infobars')
+def codetestscore1(testscore1):
+	if( testscore1 == 0 or testscore1>5 or testscore1<-5):
+		testscore1 = -1
+	else:
+		testscore1 = 1
+	return testscore1
+
+	############################################ First check on the URL
+def checonnection(data):
+	for j in range(len(data)):
+		urlj = data[j]
+		try :
+			request = requests.get(urlj)
+			if request.status_code == 200:
+				 data1.append(urlj)
+		except:
+			print("Fail connection")
+	return data1
+ chrome_options = webdriver.ChromeOptions()
+# chrome_options.add_argument('--headless')
+
+chrome_options.add_argument('disable-infobars')
+def predict():
+    if request.method == 'POST':
+        url = request.form['url']
+        data1 = [('{}'.format(url))]
+   
     #try:
     for n in range(len(data1)):
 		url = data1[n]
