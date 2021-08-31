@@ -19,6 +19,9 @@ import hashlib
 from random import sample 
 import sys
 sys.setrecursionlimit(10000)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('disable-infobars')
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
@@ -153,10 +156,7 @@ def checonnection(data):
 		except:
 			print("Fail connection")
 	return data1
- chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument('--headless')
 
-chrome_options.add_argument('disable-infobars')
 def predict():
 	data1 = []
     if request.method == 'POST':
