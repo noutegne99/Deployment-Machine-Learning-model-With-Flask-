@@ -217,8 +217,8 @@ def predict():
     if request.method == 'POST':
 	    errors = []
         #try:
-        url = request.form['url']
-        data1 = [('{}'.format(url))]
+        url1 = request.form['url']
+        data1 = [('{}'.format(url1))]
         #except:
             #errors.append("Unable to get URL. Please make sure it's valid and try again.")
             #return render_template('index.html')
