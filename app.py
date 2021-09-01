@@ -18,6 +18,7 @@ from urllib.parse  import urlparse
 import hashlib
 from random import sample 
 import sys
+from flask import request
 sys.setrecursionlimit(10000)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
@@ -215,8 +216,7 @@ def predict():
     data1 = []
     #results = {}
     if request.method == 'POST':
-	    errors = []
-        #try:
+	    errors = []#try:
         url1 = request.form['url']
         data1 = [('{}'.format(url1))]
         #except:
