@@ -146,6 +146,27 @@ def func_NRP(RP1):
         return -1
     else:
         return 1
+def selct_url(links,url):
+    list11=[]
+    if(len(links)>=2):
+        list_of_random_items=random.sample(links,2)
+        newLink=list_of_random_items[0]
+        newLinktext1=list_of_random_items[1]
+        list11.append(newLink) 
+        list11.append(newLinktext1)
+    elif(len(links) ==1):
+        list_of_random_items=random.sample(links,1)
+        newLink=list_of_random_items[0]
+        newLinktext1= url
+        list11.append(newLink) 
+        list11.append(newLinktext1)
+    else:
+        newLink= url
+        newLinktext1 = url
+        list11.append(newLink) 
+        list11.append(newLinktext1)
+        #print(list11)
+    return list11
 ############################################ First check on the URL
 def checonnection(data):
 	for j in range(len(data)):
@@ -270,27 +291,7 @@ def predict():
 		#except:
 		#	pass
         newL =[]
-		def selct_url(links,url):
-			list11=[]
-			if(len(links)>=2):
-				list_of_random_items=random.sample(links,2)
-				newLink=list_of_random_items[0]
-				newLinktext1=list_of_random_items[1]
-				list11.append(newLink) 
-				list11.append(newLinktext1)
-			elif(len(links) ==1):
-				list_of_random_items=random.sample(links,1)
-				newLink=list_of_random_items[0]
-				newLinktext1= url
-				list11.append(newLink) 
-				list11.append(newLinktext1)
-			else:
-				newLink= url
-				newLinktext1 = url
-				list11.append(newLink) 
-				list11.append(newLinktext1)
-				#print(list11)
-			return list11
+		
 		newL= selct_url(links,url)   
 		newLink = newL[0] 
 		newLinktext1=newL[1]
