@@ -223,7 +223,8 @@ def predict():
             #errors.append("Unable to get URL. Please make sure it's valid and try again.")
             #return render_template('index.html')#try:
     for n in range(len(data1)):
-		url = data1[n]
+		urldata = data1[n]
+        url = urldata
 		links =[]
 		RP1=[]
 		link2 =[]
