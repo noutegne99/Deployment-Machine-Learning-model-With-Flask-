@@ -215,14 +215,13 @@ def home():
 def predict():
     data1 = []
     #results = {}
+    errors = []
     if request.method == 'POST':
-	    errors = []#try:
         url1 = request.form['url']
         data1 = [('{}'.format(url1))]
         #except:
             #errors.append("Unable to get URL. Please make sure it's valid and try again.")
-            #return render_template('index.html')
-	#try:
+            #return render_template('index.html')#try:
     for n in range(len(data1)):
 		url = data1[n]
 		links =[]
