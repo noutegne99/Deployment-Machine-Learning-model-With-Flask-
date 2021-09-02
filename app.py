@@ -291,8 +291,7 @@ def predict():
 		#except:
 		#	pass
         newL =[]
-		
-		newL= selct_url(links,url)   
+        newL= selct_url(links,url)   
 		newLink = newL[0] 
 		newLinktext1=newL[1]
 		#print(newLinktext1)
