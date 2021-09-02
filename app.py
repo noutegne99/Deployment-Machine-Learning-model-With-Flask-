@@ -141,8 +141,12 @@ def codetestscore1(testscore1):
 	else:
 		testscore1 = 1
 	return testscore1
-
-	############################################ First check on the URL
+def func_NRP(RP1):
+    if len(RP1)>=1:
+        return -1
+    else:
+        return 1
+############################################ First check on the URL
 def checonnection(data):
 	for j in range(len(data)):
 		urlj = data[j]
@@ -265,13 +269,7 @@ def predict():
         print(url)
 		#except:
 		#	pass
-		def func_NRP(RP1):
-			if len(RP1)>=1:
-				return -1
-			else:
-				return 1
-
-		newL =[]
+        newL =[]
 		def selct_url(links,url):
 			list11=[]
 			if(len(links)>=2):
