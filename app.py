@@ -256,40 +256,40 @@ def predict():
     for n in range(len(data1)):
         urldata = data1[n]
         url = urldata
-		#try :
-        driver = webdriver.Chrome('chromedriver.exe')
-        driver.implicitly_wait(2) 
-        resp= driver.get(url)
-        driver.get_screenshot_as_file('screenshot1.png')
-        driver.close()
-        response = requests.get(url)
-        html = response.text         
-        soup = bs(html, 'lxml')
-        links = ([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://")} )] or
-        [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://")} )] or
-        [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or 
-        [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^/")} )] or 
-        [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
-        [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or
-        [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )]   or
-        [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or 
-        [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^http://[A-Za-z0-9]")})] or
-        [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or 
-        [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^https://[A-Za-z0-9]")} )]or
-        [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )] or 
-        [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})]or
-        [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
-        [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
-        #print(links)
-        RP1 =([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or
-         [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )]or
-         [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})])
+		try :
+            driver = webdriver.Chrome('chromedriver.exe')
+            driver.implicitly_wait(2) 
+            resp= driver.get(url)
+            driver.get_screenshot_as_file('screenshot1.png')
+            driver.close()
+            response = requests.get(url)
+            html = response.text         
+            soup = bs(html, 'lxml')
+            links = ([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://")} )] or
+            [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://")} )] or
+            [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or 
+            [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^/")} )] or 
+            [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
+            [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or
+            [a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )]   or
+            [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^http://[A-Za-z0-9]")} )] or 
+            [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^http://[A-Za-z0-9]")})] or
+            [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^https://[A-Za-z0-9]")} )] or 
+            [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^https://[A-Za-z0-9]")} )]or
+            [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )] or 
+            [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})]or
+            [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
+            [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
+            #print(links)
+            RP1 =([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or
+             [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )]or
+             [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})])
 
-        hash_object = hashlib.sha3_224(soup.encode()).hexdigest()
-        #print(hash_object.hexdigest())
-        print(url)
-		#except:
-		#	pass
+            hash_object = hashlib.sha3_224(soup.encode()).hexdigest()
+            #print(hash_object.hexdigest())
+            #print(url)
+		except:
+			pass
         newL =[]
         newL= selct_url(links,url)   
 		newLink = newL[0] 
