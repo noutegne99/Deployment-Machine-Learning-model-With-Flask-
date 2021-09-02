@@ -214,6 +214,7 @@ def home():
 @app.route('/', methods=['GET', 'POST'])
 def predict():
     data1 = []
+    links =[]
     #results = {}
     errors = []
     if request.method == 'POST':
@@ -225,7 +226,6 @@ def predict():
     for n in range(len(data1)):
         urldata = data1[n]
         url = urldata
-		links =[]
 		RP1=[]
 		link2 =[]
 		RP3=[]
