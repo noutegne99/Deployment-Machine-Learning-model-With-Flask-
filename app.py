@@ -219,11 +219,11 @@ def predict():
     if request.method == 'POST':
         url1 = request.form['url']
         data1 = [('{}'.format(url1))]
-        #except:
-            #errors.append("Unable to get URL. Please make sure it's valid and try again.")
+    else:   #except:
+        errors.append("Unable to get URL. Please make sure it's valid and try again.")
             #return render_template('index.html')#try:
     for n in range(len(data1)):
-		urldata = data1[n]
+        urldata = data1[n]
         url = urldata
 		links =[]
 		RP1=[]
