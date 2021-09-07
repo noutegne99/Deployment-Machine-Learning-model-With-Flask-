@@ -5,14 +5,16 @@
 # top-most EditorConfig file
 root = true
 
+
+
+# 4 space indentation
+[*.py]
+indent_style = tab
+indent_size = 4
+
 [*.py]
 indent_style = tab #space
 indent_size = 4
-
-# 4 space indentation
-#[*.py]
-#indent_style = tab
-#indent_size = 4
 
 # Unix-style newlines with a newline ending every file
 [*]
