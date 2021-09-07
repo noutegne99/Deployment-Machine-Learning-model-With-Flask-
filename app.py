@@ -32,7 +32,6 @@ def home():
 def predict():
     data1 = []
     if request.method == 'POST':
-	    data1 = []
         url = request.form['url'] 
         data1 = [('{}'.format(url))]
    ##################################################################################################################################	
@@ -52,13 +51,6 @@ def predict():
             return -1
         else:
             return 1
-	##########################################################################################################################
-	def func_urLength(url):
-		l = len(url)
-		if(l > 80):
-			return -1
-		else:
-			return 1
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -74,12 +66,13 @@ def predict():
         else:
             return 1
     ################ Funn that checks the length of an url ##################################################
-    """def func_urLength(url):                                      #f9
-		l = len(url) 
-		if(l > 80):
+    def func_urLength(url):                                      #f9
+        #for j in range(len(data)):
+		urlength = len(url) 
+		if(urlength > 80):
 			return -1
 		else:
-			return 1""" 
+			return 1 
    ##### Function that checks the number of dots the resource ################################
     def func_urlDotSymbol(url):                                  #f4
 		dots= urlparse(url).netloc
@@ -314,9 +307,9 @@ def predict():
 				urll1= url
 
 			return urll1
-		
+		url2 = checonnectionurll2(newLink)
 		try:    
-			url2 = checonnectionurll2(newLink)
+			
 			driver2 = webdriver.Chrome('chromedriver.exe')
 			driver2.implicitly_wait(2) 
 			resp2= driver2.get(url2)
@@ -594,4 +587,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
