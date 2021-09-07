@@ -18,6 +18,7 @@ from urllib.parse  import urlparse
 import hashlib
 from random import sample 
 import sys
+import lxml
 sys.setrecursionlimit(10000)
 
 app = Flask(__name__)
@@ -29,10 +30,12 @@ def home():
 
 @app.route('/predict',methods=[ 'POST'])
 def predict():
+    data1 = []
     if request.method == 'POST':
-        url = request.form['url']
+	    data1 = []
+        url = request.form['url'] 
         data1 = [('{}'.format(url))]
-        
+   ##################################################################################################################################	
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
         if ats >=1 :
@@ -49,6 +52,13 @@ def predict():
             return -1
         else:
             return 1
+	##########################################################################################################################
+	def func_urLength(url):
+		l = len(url)
+		if(l > 80):
+			return -1
+		else:
+			return 1
     ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
@@ -64,32 +74,26 @@ def predict():
         else:
             return 1
     ################ Funn that checks the length of an url ##################################################
-    def func_urLength(url):                                      #f9
-        #for j in range(len(data)):
-        urlength = len(url) 
-        if(urlength > 80):
-             return -1
-        else:
-             return 1 
-    ##### Function that checks the number of dots the resource ################################
-    """def func_urlDotSymbol(url):                                  #f4
+    """def func_urLength(url):                                      #f9
+		l = len(url) 
+		if(l > 80):
+			return -1
+		else:
+			return 1""" 
+   ##### Function that checks the number of dots the resource ################################
+    def func_urlDotSymbol(url):                                  #f4
 		dots= urlparse(url).netloc
 		if dots.count('.')<= 3 :
 			return 1
 		else:
-			return -1 """
+			return -1
     #######Decision groups########################################################################
     def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
         if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
             return -1
         else:
             return 1
-    def func_urlDotSymbol(url):
-		dots = urlparse(url).netloc
-		if(dots.count('.')<= 3):
-			return 1
-		else:
-			return -1
+
     def Goodfunc_urlDasheSymbol(Feature3,Feature31,Feature32):
         if (Feature3==-1 or Feature31==-1 or Feature32 ==-1):
             return -1
@@ -159,17 +163,17 @@ def predict():
             try :
                 request = requests.get(urlj)
                 if request.status_code == 200:
-					data1.append(urlj)
+                     data1.append(urlj)
             except:
                 print("Fail connection")
         return data1
     chrome_options = webdriver.ChromeOptions()
-    # chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--headless')
 	
     chrome_options.add_argument('disable-infobars')
     #try:
     for n in range(len(data1)):
-		url = data1[n]
+	    url = data1[n]
 		links =[]
 		RP1=[]
 		link2 =[]
@@ -184,7 +188,7 @@ def predict():
 			driver.close()
 			response = requests.get(url)
 			html = response.text         
-			soup = bs(html, 'lxml')
+			soup = bs(html)
 			links = ([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^https://")} )] or
 			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^http://")} )] or
 			[a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or 
@@ -255,7 +259,7 @@ def predict():
 		def func_CheckpasswordCreditcard(url):            #f6
 			response = requests.get(url)
 			html = response.text
-			soup = bs(html, 'lxml')
+			soup = bs(html)
 			pwdCredit =( [input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^idcard")} )] or 
 			[input.get('type') for input in soup.findAll('input', attrs={'type': re.compile("^password")} )]or
 			[label.get('for') for label in soup.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
@@ -265,7 +269,7 @@ def predict():
 				return 1
 			else:
 				return -1
-		def func_MatchDomainTitle(url):#f5
+		def func_MatchDomainTitle(url): #f5
 			import tldextract
 			import requests
 			from bs4 import BeautifulSoup as bs
@@ -277,7 +281,7 @@ def predict():
 			consdmr = ''.join(e for e in dmr.lower() if e.isalnum())
 			response = requests.get(url)
 			html = response.text
-			soup = bs(html, 'lxml')
+			soup = bs(html)
 			try :
 				if (soup.title.string):
 						#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
@@ -310,7 +314,7 @@ def predict():
 				urll1= url
 
 			return urll1
-
+		
 		try:    
 			url2 = checonnectionurll2(newLink)
 			driver2 = webdriver.Chrome('chromedriver.exe')
@@ -320,7 +324,7 @@ def predict():
 			driver2.close()
 			response2 = requests.get(url2)
 			html2 = response2.text
-			soup2 = bs(html2, 'lxml')                                                     
+			soup2 = bs(html2)                                                     
 			#links = soup.find_all('href')
 			links2 = ([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^https://")} )] or 
 			[a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^http://")} )]  or 
@@ -375,7 +379,7 @@ def predict():
 		def func_CheckpasswordCreditcard2(url2):            #f6
 			response2 = requests.get(url2)
 			html2 = response2.text
-			soup2 = bs(html2, 'lxml')
+			soup2 = bs(html2)
 			pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
 			[input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^password")} )] or 
 			[label.get('for') for label in soup2.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
@@ -393,7 +397,7 @@ def predict():
 			consdmr2 = ''.join(e for e in dmr2.lower() if e.isalnum())
 			response2 = requests.get(url2)
 			html2 = response2.text
-			soup2 = bs(html2, 'lxml')
+			soup2 = bs(html2)
 			try :
 				if ((soup2.title.string) and (soup2.title.string.lower())):
 						#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
@@ -435,7 +439,7 @@ def predict():
 			driver3.close()
 			response3 = requests.get(url3)
 			html3 = response3.text
-			soup3 = bs(html3, 'lxml')
+			soup3 = bs(html3)
 			RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
 			 [link.get('href') for link in soup3.findAll('link', attrs={'href': re.compile("^#")} )]or
 			 [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])
@@ -459,7 +463,7 @@ def predict():
 		def func_CheckpasswordCreditcard3(url3):            #f6
 			response3 = requests.get(url3)
 			html3 = response3.text
-			soup3 = bs(html3, 'lxml')
+			soup3 = bs(html3)
 			pwdCredit3 = ([input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^idcard")} )] or
 			[input.get('type') for input in soup3.findAll('input', attrs={'type': re.compile("^password")} )]or
 								 [label.get('for') for label in soup3.findAll('label', attrs={'for': re.compile("^j_pin")} )]or
@@ -477,7 +481,7 @@ def predict():
 			consdmr3 = ''.join(e for e in dmr3.lower() if e.isalnum())
 			response3 = requests.get(url3)
 			html3 = response3.text
-			soup3 = bs(html3, 'lxml')
+			soup3 = bs(html3)
 			try :
 				if ((soup3.title.string) and (soup3.title.string.lower())):
 						#lisdmr = re.search(consdmr , ''.join(e for e in soup.title.string.lower() if e.isalnum()))
@@ -515,7 +519,7 @@ def predict():
 			newLinktext1 = checonnectionurll4((newLinktext1))
 			response4 = requests.get(newLinktext1)
 			html4 = response4.text
-			soup4 = bs(html4, 'lxml')
+			soup4 = bs(html4)
 			hash_object4 = hashlib.sha3_224(soup4.encode())
 		   # print(hash_object4.hexdigest())
 		except:
@@ -557,10 +561,10 @@ def predict():
 		Href = hamming_distance(hash2,hash3)
 		Htest = hamming_distance(hash3,hash1)
 		score1 = (Htest - Href)
-
+		
 		#'URL','URL': url,
 
-		with open('CheckData.csv', mode='w') as score_file:
+		with open('LIONEL.csv', mode='w') as score_file:
 			fieldnames = ['Perceptual_similarity','Text_similarity','TesturlAtSymbol','TesturlDasheSymbol','TesturlDotSymbol',
 						  'TestGoodCheckpwdCreditcard','TestGoodMatchDomainTitle','TestIPAdress','TestGoodurLength']
 			writer = csv.DictWriter(score_file, fieldnames=fieldnames)
@@ -568,12 +572,12 @@ def predict():
 			writer.writerow({'Perceptual_similarity': codescore1(score1),'Text_similarity': codetestscore1(testscore1),'TesturlAtSymbol':GFeature2, 'TesturlDasheSymbol':GFeature3,
 							 'TesturlDotSymbol':GFeature4,'TestGoodCheckpwdCreditcard': GFeature5,'TestGoodMatchDomainTitle':GFeature6,
 							 'TestIPAdress':GFeature8,'TestGoodurLength':Feature9})
-
+				
 		score_file.close()
                     
     def RunData(file):
         model = pickle.load(open('model.pkl','rb'))
-        with open('CheckDataCheckDataCheckData.csv', 'r') as f:
+        with open('LIONEL.csv', 'r') as f:
             ligne = f.readline()
             ElementData = ligne.split(',')[0:10]
             converted_list = []
@@ -582,11 +586,12 @@ def predict():
                 features = [converted_list]
             prediction = model.predict(features)
             if (prediction[0] == 1):
-                text = 'secured '
+                text = 'secure '
             else:
-                text = 'not secured'
+                text = 'not secure '
         return text
-    return render_template('index.html', prediction_text=' This website is {}'.format(RunData('C:/Users/bkoua/Eprojet_/APIPHISHING/LIONEL.csv')))
+    return render_template('index.html', prediction_text=' This website is {}'.format(RunData('LIONEL.csv')))
 
 if __name__ == "__main__":
     app.run(debug=True)
+
