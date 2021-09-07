@@ -260,7 +260,7 @@ def predict():
 				return 1
 			else:
 				return -1
-		def func_MatchDomainTitle(url): #f5
+		def func_MatchDomainTitle(url):#f5
 			import tldextract
 			import requests
 			from bs4 import BeautifulSoup as bs
