@@ -172,7 +172,7 @@ def predict():
                     links3 =[]
                     RP3=[]
                     try :
-                        driver = webdriver.Chrome('C:/Users/bkoua/Eprojet_/APIPHISHING/chromedriver.exe')
+                        driver = webdriver.Chrome('chromedriver.exe')
                         driver.implicitly_wait(2) 
                         resp= driver.get(url)
                         driver.get_screenshot_as_file('C:/Users/bkoua/Eprojet_/APIPHISHING/screenshot1.png')
