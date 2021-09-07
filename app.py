@@ -579,7 +579,7 @@ def predict():
             if (prediction[0] == 1):
                 text = 'secured '
             else:
-                text = 'not secured '
+                text = 'not secured'
         return text
     return render_template('index.html', prediction_text=' This website is {}'.format(RunData('C:/Users/bkoua/Eprojet_/APIPHISHING/LIONEL.csv')))
 
