@@ -51,7 +51,7 @@ def predict():
             return -1
         else:
             return 1
-    ##############  Function that checks if the domain name is an IPV4 address ##############################
+   ##############  Function that checks if the domain name is an IPV4 address ##############################
     def func_ipAddress(url) :
         tldextractsubdomain=tldextract.extract(url).subdomain   #f8
         tldextractdomain=tldextract.extract(url).domain
@@ -65,13 +65,7 @@ def predict():
             return -1
         else:
             return 1
-    ################ Funn that checks the length of an url ################################################## #f9
-	def func_urLenght(url):
-		urlenght = len(url)
-		if(urlength > 80):
-			return -1
-		else:
-			return 1
+  
    ##### Function that checks the number of dots the resource ################################
     def func_urlDotSymbol(url):                                  #f4
 		dots= urlparse(url).netloc
@@ -79,7 +73,7 @@ def predict():
 			return 1
 		else:
 			return -1
-    #######Decision groups########################################################################
+   #######Decision groups########################################################################
     def Goodfunc_urlAtSymbol(Feature2,Feature21,Feature22):
         if (Feature2==-1 or Feature21==-1 or Feature22 ==-1):
             return -1
@@ -147,8 +141,14 @@ def predict():
         else:
             testscore1 = 1
         return testscore1
-
-        ############################################ First check on the URL
+   ################ Funn that checks the length of an url ################################################## #f9
+    def func_urLenght(url):
+		urlenght = len(url)
+		if(urlength > 80):
+			return -1
+		else:
+			return 1
+   ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
             urlj = data[j]
