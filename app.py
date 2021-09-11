@@ -168,11 +168,11 @@ def predict():
     for n in range(len(data1)):
 	    url = data1[n]
 		#links =[]
-		RP1=[]
-		link2 =[]
-		RP3=[]
-		links3 =[]
-		RP3=[]
+		#RP1=[]
+		#link2 =[]
+		#RP3=[]
+		#links3 =[]
+		#RP3=[]
 		try :
 			driver = webdriver.Chrome('chromedriver.exe')
 			driver.implicitly_wait(2) 
