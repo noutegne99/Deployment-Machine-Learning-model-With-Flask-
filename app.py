@@ -136,12 +136,12 @@ def predict():
             testscore1 = 1
         return testscore1
    ################ Funn that checks the length of an url ################################################## #f9
-    def func_urLenght(url):
+    """def func_urLenght(url):
 		urlenght = len(url)
 		if(urlenght > 80):
 			return -1
 		else:
-			return 1
+			return 1"""
    ############################################ First check on the URL
     def checonnection(data):
         for j in range(len(data)):
@@ -154,12 +154,12 @@ def predict():
                 print("Fail connection")
         return data1
    ##### Function that checks the number of dots the resource ################################
-    def func_urlDotSymbol(url):                                  #f4
+    """def func_urlDotSymbol(url):                                  #f4
 		dots = urlparse(url).netloc
-		if dots.count('.')<= 3 :
+		if(dots.count('.'))<= 3 :
 			return 1
 		else:
-			return -1
+			return -1"""
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
 	
