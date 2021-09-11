@@ -570,7 +570,7 @@ def predict():
                     
     def RunData(file):
         model = pickle.load(open('model.pkl','rb'))
-        with open('LIONEL.csv', 'r') as f:
+        with open('LIOkkkkkNEL.csv', 'r') as f:
             ligne = f.readline()
             ElementData = ligne.split(',')[0:10]
             converted_list = []
