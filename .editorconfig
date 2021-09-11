@@ -13,7 +13,7 @@ root = true
 #indent_size = 4
 
 [*.py]
-indent_style = tab #space
+indent_style = space
 indent_size = 4
 
 # Unix-style newlines with a newline ending every file
