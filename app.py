@@ -167,7 +167,7 @@ def predict():
     #try:
     for n in range(len(data1)):
 	    url = data1[n]
-		links =[]
+		#links =[]
 		RP1=[]
 		link2 =[]
 		RP3=[]
