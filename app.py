@@ -137,8 +137,8 @@ def predict():
         return testscore1
    ################ Funn that checks the length of an url ################################################## #f9
     def func_urLenght(url):
-		urlenght = len(url)
-		if(urlength > 80):
+		#urlenght = len(url)
+		if(len(url) > 80):
 			return -1
 		else:
 			return 1
@@ -155,8 +155,8 @@ def predict():
         return data1
    ##### Function that checks the number of dots the resource ################################
     def func_urlDotSymbol(url):                                  #f4
-		dots = urlparse(url).netloc
-		if dots.count('.')<= 3 :
+		#dots = 
+		if (urlparse(url).netloc).count('.')<= 3 :
 			return 1
 		else:
 			return -1
