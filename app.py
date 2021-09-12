@@ -325,7 +325,7 @@ def predict():
                 driver2 = webdriver.Chrome(ChromeDriverManager().install())
                 driver2.implicitly_wait(2) 
                 resp2= driver2.get(url2)
-                driver2.get_screenshot_as_file('screenshot2.png')
+                driver2.get_screenshot_as_file('/WebDrive/screenshot2.png')
                 driver2.close()
                 response2 = requests.get(url2)
                 html2 = response2.text
@@ -441,7 +441,7 @@ def predict():
                 driver3 = webdriver.Chrome(ChromeDriverManager().install())
                 driver3.implicitly_wait(2) 
                 resp3= driver3.get(url3)
-                driver3.get_screenshot_as_file('screenshot3.png')
+                driver3.get_screenshot_as_file('/WebDrive/screenshot3.png')
                 driver3.close()
                 response3 = requests.get(url3)
                 html3 = response3.text
@@ -540,17 +540,17 @@ def predict():
             GFeature9 = Good_func_urLength(Feature9,Feature91,Feature92)
 
 
-            with Image.open("screenshot1.png") as H1 :
+            with Image.open("/WebDrive/screenshot1.png") as H1 :
                 row, col = dhash.dhash_row_col(H1 )
                 #hash1.show() 
                 hash1= dhash.format_hex(row, col)
             # print(hash1)
-            with Image.open("screenshot2.png") as H2 :
+            with Image.open("/WebDrive/screenshot2.png") as H2 :
                 row2, col2 = dhash.dhash_row_col(H2 )
                 #hash1.show() 
                 hash2= dhash.format_hex(row2, col2)
             #   print(hash2)
-            with Image.open("screenshot3.png") as H3 :
+            with Image.open("/WebDrive/screenshot3.png") as H3 :
                 row3, col3 = dhash.dhash_row_col(H3 )
                 #hash1.show() 
                 hash3= dhash.format_hex(row3, col3)
