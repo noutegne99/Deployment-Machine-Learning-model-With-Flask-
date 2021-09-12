@@ -172,10 +172,10 @@ def predict():
             links3 =[]
             RP3=[]
             try :
-                driver = webdriver.Chrome('chromedriver.exe')
+                driver = webdriver.Chrome('./chromedriver.exe')
                 driver.implicitly_wait(2) 
                 resp= driver.get(url)
-                driver.get_screenshot_as_file('screenshot10.png')
+                driver.get_screenshot_as_file('./screenshot1.png')
                 driver.close()
                 response = requests.get(url)
                 html = response.text         
@@ -525,7 +525,7 @@ def predict():
             GFeature9 = Good_func_urLength(Feature9,Feature91,Feature92)
 
 
-           ########### with Image.open("screenshot1.png") as H1 :
+           with Image.open("screenshot1.png") as H1 :
                 row, col = dhash.dhash_row_col(H1 )
                 #hash1.show() 
                 hash1= dhash.format_hex(row, col)
