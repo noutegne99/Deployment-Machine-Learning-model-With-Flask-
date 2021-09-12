@@ -158,10 +158,10 @@ def predict():
             except:
                 print("Fail connection")
         return data1
-    chrome_options = webdriver.ChromeOptions()
+    #chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
 	
-    chrome_options.add_argument('disable-infobars')
+    #chrome_options.add_argument('disable-infobars')
 
     #before use selisiun################################################
     from selenium import webdriver
