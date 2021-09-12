@@ -188,7 +188,7 @@ def predict():
             try :
                 driver.implicitly_wait(2) 
                 resp= driver.get(url)
-                driver.get_screenshot_as_file('screenshot1.png')
+                driver.get_screenshot_as_file('/WebDrive/screenshot1.png')
                 driver.close()
                 response = requests.get(url)
                 html = response.text         
@@ -321,7 +321,8 @@ def predict():
 
             try:    
                 url2 = checonnectionurll2(newLink)
-                driver2 = webdriver.Chrome('chromedriver.exe')
+                #driver2 = webdriver.Chrome('chromedriver.exe')
+                driver2 = webdriver.Chrome(ChromeDriverManager().install())
                 driver2.implicitly_wait(2) 
                 resp2= driver2.get(url2)
                 driver2.get_screenshot_as_file('screenshot2.png')
@@ -436,7 +437,8 @@ def predict():
                 return urll1
             try:
                 url3 = checonnectionurll3(newLink2)
-                driver3 = webdriver.Chrome('chromedriver.exe')
+                #driver3 = webdriver.Chrome('chromedriver.exe')
+                driver3 = webdriver.Chrome(ChromeDriverManager().install())
                 driver3.implicitly_wait(2) 
                 resp3= driver3.get(url3)
                 driver3.get_screenshot_as_file('screenshot3.png')
