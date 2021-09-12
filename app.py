@@ -172,10 +172,10 @@ def predict():
             links3 =[]
             RP3=[]
             try :
-                driver = webdriver.Chrome('/chromedriver.exe')
+                driver = webdriver.Chrome('chromedriver.exe')
                 driver.implicitly_wait(2) 
                 resp= driver.get(url)
-                driver.get_screenshot_as_file('./screenshot1.png')
+                driver.get_screenshot_as_file('screenshot1.png')
                 driver.close()
                 response = requests.get(url)
                 html = response.text         
