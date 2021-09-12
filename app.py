@@ -172,7 +172,7 @@ def predict():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     #driver = webdriver.Chrome(executable_path=os.environ.get("/WebDrive/chromedriver.exe"), chrome_options=chrome_options)
-    driver = webdriver.Chrome('../WebDrive/chromedriver.exe')
+    driver = webdriver.Chrome('WebDrive/chromedriver.exe')
     #try:
     for n in range(len(data1)):
             url = data1[n]
