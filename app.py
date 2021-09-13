@@ -439,10 +439,10 @@ def predict():
             def func_MatchDomainTitle2(uulink):                  #f5
 
                 subdm2 = tldextract.extract(uulink).subdomain
-                dmr2 = tldextract.extract(ulink).domain
+                dmr2 = tldextract.extract(uulink).domain
                 consubdm2 =''.join(e for e in subdm2.lower() if e.isalnum())
                 consdmr2 = ''.join(e for e in dmr2.lower() if e.isalnum())
-                response2 = requests.get(ulink)
+                response2 = requests.get(uulink)
                 html2 = response2.text
                 soup2 = bs(html2, 'lxml')
                 try :
