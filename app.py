@@ -180,6 +180,27 @@ def predict():
             newLink2= newLink
             #newLinktext1 = url
         return newLink2
+
+    def checonnectionurll3(urll):
+        try :
+            request = requests.get(urll)
+            if request.status_code == 200:
+                urll1 = urll
+        except:
+            print("Fail connection")
+            urll1 = ulink
+
+        return urll1
+    def checonnectionurll4(urll):
+        try :
+            request = requests.get(urll)
+            if request.status_code == 200:
+                urll1 = urll
+        except:
+            #print("Fail connection")
+            urll1 = url
+
+        return urll1
     #chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
 	
@@ -442,19 +463,8 @@ def predict():
             Feature61 = func_MatchDomainTitle2(ulink)
             Feature71 = func_NRP(RP2)
             #### Closing of the second web page#######################################################
-
-            def checonnectionurll3(urll):
-                try :
-                    request = requests.get(urll)
-                    if request.status_code == 200:
-                        urll1 = urll
-                except:
-                    print("Fail connection")
-                    urll1 = ulink
-
-                return urll1
+            url3 = checonnectionurll3(newLink2)
             try:
-                url3 = checonnectionurll3(newLink2)
                 #driver3 = webdriver.Chrome('chromedriver.exe')
                 driver3 = webdriver.Chrome(ChromeDriverManager().install())
                 driver3.implicitly_wait(2) 
@@ -528,19 +538,9 @@ def predict():
             Feature72 = func_NRP3(RP3)
         ######### Closing the last web page##################################
         ######## hash of the second link select on url##########################
-            def checonnectionurll4(urll):
-                try :
-                    request = requests.get(urll)
-                    if request.status_code == 200:
-                        urll1 = urll
-                except:
-                    print("Fail connection")
-                    urll1 = url
-
-                return urll1
-                        #return ulink
+            #return ulink
+            newLinktext1 = checonnectionurll4((newLinktext1))
             try:
-                newLinktext1 = checonnectionurll4((newLinktext1))
                 response4 = requests.get(newLinktext1)
                 html4 = response4.text
                 soup4 = bs(html4, 'lxml')
