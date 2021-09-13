@@ -207,15 +207,16 @@ def predict():
 
     gChromeOptions = webdriver.ChromeOptions()
 
-    gChromeOptions.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    """gChromeOptions.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     gChromeOptions.add_argument("--headless")
     gChromeOptions.add_argument("--disable-dev-shm-usage")
     gChromeOptions.add_argument("--no-sandbox")
     gChromeOptions.add_argument("--start-maximized")
-    #gChromeOptions.add_argument("window-size=1920x1480")
+    gChromeOptions.add_argument("window-size=1920x1480")
     #gChromeOptions.add_argument("disable-dev-shm-usage")
     driver = webdriver.Chrome(chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install())
-    """driver.get("https://www.python.org/")
+    driver.maximize_window()
+    driver.get("https://www.python.org/")
     time.sleep(3)
     driver.save_screenshot("my_screenshot.png")
     driver.close()"""
@@ -231,10 +232,12 @@ def predict():
             try :
                 #driver.implicitly_wait(2) 
                 #resp= driver.get(url)
+                driver = webdriver.Chrome(ChromeDriverManager().install())
                 driver.get(url)
                 time.sleep(3)
                 #driver.get_screenshot_as_file('/Screenshot/screenshot1.png')
                 driver.save_screenshot('screenshot1.png')
+                driver.maximize_window()
                 driver.close()
                 response = requests.get(url)
                 html = response.text         
