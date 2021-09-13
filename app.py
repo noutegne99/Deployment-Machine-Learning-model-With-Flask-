@@ -335,14 +335,14 @@ def predict():
                 return urll1
 
             try:    
-                url2 = checonnectionurll2(newLink)
+                #url2 = checonnectionurll2(newLink)
                 #driver2 = webdriver.Chrome('chromedriver.exe')
                 driver2 = webdriver.Chrome(ChromeDriverManager().install())
                 driver2.implicitly_wait(2) 
-                resp2= driver2.get(url2)
+                resp2= driver2.get(checonnectionurll2(newLink))
                 driver2.get_screenshot_as_file('screenshot2.png')
                 driver2.close()
-                response2 = requests.get(url2)
+                response2 = requests.get(checonnectionurll2(newLink))
                 html2 = response2.text
                 soup2 = bs(html2, 'lxml')                                                     
                 #links = soup.find_all('href')
@@ -367,7 +367,7 @@ def predict():
                     [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})])
                 hash_object2 = hashlib.sha3_224(soup2.encode())
                 #print(hash_object2.hexdigest())
-                ulink = url2
+                #ulink = url2
             except:
                 pass
             def func_NRP2(RP2):
@@ -390,7 +390,7 @@ def predict():
                 return newLink2
             newLink2 = selct_ll2(links2, newLink)
             ############################ Test on url ############################################
-            
+            ulink =checonnectionurll2(newLink)
             Feature21 = func_urlAtSymbol(ulink)
             Feature31 = func_urlDasheSymbol(ulink)
             Feature41= func_urlDotSymbol(ulink)  
