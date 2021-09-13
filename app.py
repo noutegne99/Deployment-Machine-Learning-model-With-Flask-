@@ -181,26 +181,8 @@ def predict():
             #newLinktext1 = url
         return newLink2
 
-    def checonnectionurll3(urll1 ):
-        try :
-            request = requests.get(urll)
-            if request.status_code == 200:
-                urll1 = urll
-        except:
-            print("Fail connection")
-            urll1 = ulink
-
-        return urll1
-    def checonnectionurll4(urll1 ):
-        try :
-            request = requests.get(urll)
-            if request.status_code == 200:
-                urll1 = urll
-        except:
-            #print("Fail connection")
-            urll1 = url
-
-        return urll1
+    
+   
     #chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
 	
@@ -436,6 +418,16 @@ def predict():
                     return 1
                 else:
                     return -1
+            def checonnectionurll3(urll1 ):
+                try :
+                    request = requests.get(urll)
+                    if request.status_code == 200:
+                        urll1 = urll
+                except:
+                    print("Fail connection")
+                    urll1 = uulink
+
+                return urll1
             def func_MatchDomainTitle2(uulink):                  #f5
 
                 subdm2 = tldextract.extract(uulink).subdomain
@@ -510,6 +502,16 @@ def predict():
                     return 1
                 else:
                     return -1
+             def checonnectionurll4(urll1 ):
+                try :
+                    request = requests.get(urll)
+                    if request.status_code == 200:
+                        urll1 = urll
+                except:
+                    #print("Fail connection")
+                    urll1 = url
+
+                return urll1
             def func_MatchDomainTitle3(url3): #f5
 
                 subdm3 = tldextract.extract(url3).subdomain
@@ -539,8 +541,8 @@ def predict():
             Feature52 = func_CheckpasswordCreditcard3(url3)
             Feature62 = func_MatchDomainTitle3(url3)
             Feature72 = func_NRP3(RP3)
-        ######### Closing the last web page##################################
-        ######## hash of the second link select on url##########################
+            ######### Closing the last web page##################################
+            ######## hash of the second link select on url##########################
             #return ulink
             newLinktext1 = checonnectionurll4((newLinktext1))
             try:
