@@ -165,10 +165,21 @@ def predict():
             if request.status_code == 200:
                 urll1 = urll
         except:
-            print("Fail connection")
+            #print("Fail connection")
             urll1= url
 
         return urll1
+    def selct_ll2(links2, newLink):
+        if(len(links2)>=2):
+            list_of_random_items2=random.sample(links2,2)
+            newLink2=list_of_random_items2[0]
+        elif(len(links2) ==1):
+            list_of_random_items2=random.sample(links2,1)
+            newLink2=list_of_random_items2[0]
+        else:
+            newLink2= newLink
+            #newLinktext1 = url
+        return newLink2
     #chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
 	
@@ -334,16 +345,16 @@ def predict():
             ### Closing the first page #########################################################
             links2 =[]
             RP2=[]
-
+            url2 = checonnectionurll2(newLink)
             try:    
                 #url2 = checonnectionurll2(newLink)
                 #driver2 = webdriver.Chrome('chromedriver.exe')
                 driver2 = webdriver.Chrome(ChromeDriverManager().install())
                 driver2.implicitly_wait(2) 
-                resp2= driver2.get(checonnectionurll2(newLink))
+                resp2= driver2.get(url2)
                 driver2.get_screenshot_as_file('screenshot2.png')
                 driver2.close()
-                response2 = requests.get(checonnectionurll2(newLink))
+                response2 = requests.get(url2)
                 html2 = response2.text
                 soup2 = bs(html2, 'lxml')                                                     
                 #links = soup.find_all('href')
@@ -377,21 +388,10 @@ def predict():
                 else:
                     return 1
 
-
-            def selct_ll2(links2, newLink):
-                if(len(links2)>=2):
-                    list_of_random_items2=random.sample(links2,2)
-                    newLink2=list_of_random_items2[0]
-                elif(len(links2) ==1):
-                    list_of_random_items2=random.sample(links2,1)
-                    newLink2=list_of_random_items2[0]
-                else:
-                    newLink2= newLink
-                    #newLinktext1 = url
-                return newLink2
+            ulink =  url2
+            
             newLink2 = selct_ll2(links2, newLink)
             ############################ Test on url ############################################
-            ulink =checonnectionurll2(newLink)
             Feature21 = func_urlAtSymbol(ulink)
             Feature31 = func_urlDasheSymbol(ulink)
             Feature41= func_urlDotSymbol(ulink)  
