@@ -368,8 +368,10 @@ def predict():
                 hash_object2 = hashlib.sha3_224(soup2.encode())
                 #print(hash_object2.hexdigest())
                 #ulink = url2
+                ulink =checonnectionurll2(newLink)
             except:
                 pass
+                ulink =checonnectionurll2(newLink)
             def func_NRP2(RP2):
                 if len(RP2)>=1:
                     return -1
