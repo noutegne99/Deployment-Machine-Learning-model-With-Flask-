@@ -366,8 +366,11 @@ def predict():
             ### Closing the first page #########################################################
             links2 =[]
             RP2=[]
-            url2 = checonnectionurll2(newLink)
-            try:    
+
+            
+            try:   
+                global url2
+                url2 = checonnectionurll2(newLink)
                 #url2 = checonnectionurll2(newLink)
                 #driver2 = webdriver.Chrome('chromedriver.exe')
                 driver2 = webdriver.Chrome(ChromeDriverManager().install())
