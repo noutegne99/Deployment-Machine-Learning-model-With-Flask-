@@ -227,7 +227,7 @@ def predict():
                 #resp= driver.get(url)
                 driver.get(url)
                 time.sleep(3)
-                driver.get_screenshot_as_file('/Screenshot/screenshot1.png')
+                driver.get_screenshot_as_file('https://github.com/noutegne99/Deployment-Machine-Learning-model-With-HEROKU-/tree/main/Screenshot/screenshot1.png')
                 #driver.save_screenshot('/Screenshot/screenshot1.png')
                 driver.close()
                 response = requests.get(url)
