@@ -227,8 +227,8 @@ def predict():
                 #resp= driver.get(url)
                 driver.get(url)
                 time.sleep(3)
-                driver.get_screenshot_as_file('https://github.com/noutegne99/Deployment-Machine-Learning-model-With-HEROKU-/tree/main/Screenshot/screenshot1.png')
-                #driver.save_screenshot('/Screenshot/screenshot1.png')
+                #driver.get_screenshot_as_file('/Screenshot/screenshot1.png')
+                driver.save_screenshot('screenshot1.png')
                 driver.close()
                 response = requests.get(url)
                 html = response.text         
@@ -562,7 +562,7 @@ def predict():
             GFeature9 = Good_func_urLength(Feature9,Feature91,Feature92)
 
 
-            with Image.open("https://github.com/noutegne99/Deployment-Machine-Learning-model-With-HEROKU-/tree/main/Screenshot/screenshot1.png") as H1 :
+            with Image.open("screenshot1.png") as H1 :
                 row, col = dhash.dhash_row_col(H1 )
                 #hash1.show() 
                 hash1= dhash.format_hex(row, col)
