@@ -352,6 +352,7 @@ def predict():
                     [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})])
                 hash_object2 = hashlib.sha3_224(soup2.encode())
                 #print(hash_object2.hexdigest())
+                ulink = url2
             except:
                 pass
             def func_NRP2(RP2):
@@ -361,7 +362,7 @@ def predict():
                     return 1
 
 
-            def selct_url2(links2, newLink):
+            def selct_ll2(links2, newLink):
                 if(len(links2)>=2):
                     list_of_random_items2=random.sample(links2,2)
                     newLink2=list_of_random_items2[0]
@@ -372,9 +373,9 @@ def predict():
                     newLink2= newLink
                     #newLinktext1 = url
                 return newLink2
-            newLink2 = selct_url2(links2, newLink)
+            newLink2 = selct_ll2(links2, newLink)
             ############################ Test on url ############################################
-            ulink = url2
+            
             Feature21 = func_urlAtSymbol(ulink)
             Feature31 = func_urlDasheSymbol(ulink)
             Feature41= func_urlDotSymbol(ulink)  
