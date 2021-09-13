@@ -158,6 +158,17 @@ def predict():
             except:
                 print("Fail connection")
         return data1
+
+    def checonnectionurll2(urll):
+        try :
+            request = requests.get(urll)
+            if request.status_code == 200:
+                urll1 = urll
+        except:
+            print("Fail connection")
+            urll1= url
+
+        return urll1
     #chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
 	
@@ -323,16 +334,6 @@ def predict():
             ### Closing the first page #########################################################
             links2 =[]
             RP2=[]
-            def checonnectionurll2(urll):
-                try :
-                    request = requests.get(urll)
-                    if request.status_code == 200:
-                        urll1 = urll
-                except:
-                    print("Fail connection")
-                    urll1= url
-
-                return urll1
 
             try:    
                 #url2 = checonnectionurll2(newLink)
@@ -368,10 +369,8 @@ def predict():
                 hash_object2 = hashlib.sha3_224(soup2.encode())
                 #print(hash_object2.hexdigest())
                 #ulink = url2
-                ulink =checonnectionurll2(newLink)
             except:
                 pass
-                ulink =checonnectionurll2(newLink)
             def func_NRP2(RP2):
                 if len(RP2)>=1:
                     return -1
