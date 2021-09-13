@@ -159,7 +159,7 @@ def predict():
                 print("Fail connection")
         return data1
 
-    def checonnectionurll2(urll):
+    def checonnectionurll2(urll1):
         try :
             request = requests.get(urll)
             if request.status_code == 200:
