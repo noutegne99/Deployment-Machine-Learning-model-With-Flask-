@@ -181,7 +181,7 @@ def predict():
             #newLinktext1 = url
         return newLink2
 
-    def checonnectionurll3(urll):
+    def checonnectionurll3(urll1 ):
         try :
             request = requests.get(urll)
             if request.status_code == 200:
@@ -191,7 +191,7 @@ def predict():
             urll1 = ulink
 
         return urll1
-    def checonnectionurll4(urll):
+    def checonnectionurll4(urll1 ):
         try :
             request = requests.get(urll)
             if request.status_code == 200:
@@ -412,19 +412,19 @@ def predict():
                 else:
                     return 1
 
-            ulink =  url2
+            uulink =  url2
             
             newLink2 = selct_ll2(links2, newLink)
             ############################ Test on url ############################################
-            Feature21 = func_urlAtSymbol(ulink)
-            Feature31 = func_urlDasheSymbol(ulink)
-            Feature41= func_urlDotSymbol(ulink)  
-            Feature81 = func_ipAddress(ulink)
-            Feature91 = func_urLength(ulink)
+            Feature21 = func_urlAtSymbol(uulink)
+            Feature31 = func_urlDasheSymbol(uulink)
+            Feature41= func_urlDotSymbol(uulink)  
+            Feature81 = func_ipAddress(uulink)
+            Feature91 = func_urLength(uulink)
 
             #### Test on the content of the page ######################################################
-            def func_CheckpasswordCreditcard2(ulink):            #f6
-                response2 = requests.get(ulink)
+            def func_CheckpasswordCreditcard2(uulink):            #f6
+                response2 = requests.get(uulink)
                 html2 = response2.text
                 soup2 = bs(html2, 'lxml')
                 pwdCredit2 =( [input.get('type') for input in soup2.findAll('input', attrs={'type': re.compile("^idcard")} )] or
@@ -436,9 +436,9 @@ def predict():
                     return 1
                 else:
                     return -1
-            def func_MatchDomainTitle2(ulink):                  #f5
+            def func_MatchDomainTitle2(uulink):                  #f5
 
-                subdm2 = tldextract.extract(ulink).subdomain
+                subdm2 = tldextract.extract(uulink).subdomain
                 dmr2 = tldextract.extract(ulink).domain
                 consubdm2 =''.join(e for e in subdm2.lower() if e.isalnum())
                 consdmr2 = ''.join(e for e in dmr2.lower() if e.isalnum())
@@ -462,8 +462,8 @@ def predict():
             ##$$print(newLink2)
             #driver2.close()
 
-            Feature51 = func_CheckpasswordCreditcard2(ulink)
-            Feature61 = func_MatchDomainTitle2(ulink)
+            Feature51 = func_CheckpasswordCreditcard2(uulink)
+            Feature61 = func_MatchDomainTitle2(uulink)
             Feature71 = func_NRP(RP2)
             #### Closing of the second web page#######################################################
             url3 = checonnectionurll3(newLink2)
@@ -580,7 +580,7 @@ def predict():
 
             ###### Text on similarity #############################################################
             Htesttext2 = hamming_distance(hashlib.sha3_224(soup4.encode()).hexdigest(),hashlib.sha3_224(bs(requests.get(url).text, 'lxml').encode()).hexdigest())
-            Hreftext1 = hamming_distance(hashlib.sha3_224( bs(requests.get(ulink).text, 'lxml').encode()).hexdigest(),hashlib.sha3_224(soup4.encode()).hexdigest())
+            Hreftext1 = hamming_distance(hashlib.sha3_224( bs(requests.get(uulink).text, 'lxml').encode()).hexdigest(),hashlib.sha3_224(soup4.encode()).hexdigest())
 
             testscore1 = (Htesttext2 - Hreftext1)
 
