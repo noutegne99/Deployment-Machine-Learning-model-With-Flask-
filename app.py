@@ -209,10 +209,11 @@ def predict():
 
     gChromeOptions.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     gChromeOptions.add_argument("--headless")
+    gChromeOptions.add_argument("--disable-dev-shm-usage")
     gChromeOptions.add_argument("--no-sandbox")
-
-    gChromeOptions.add_argument("window-size=1920x1480")
-    gChromeOptions.add_argument("disable-dev-shm-usage")
+    gChromeOptions.add_argument("--start-maximized")
+    #gChromeOptions.add_argument("window-size=1920x1480")
+    #gChromeOptions.add_argument("disable-dev-shm-usage")
     driver = webdriver.Chrome(chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install())
     """driver.get("https://www.python.org/")
     time.sleep(3)
