@@ -502,7 +502,7 @@ def predict():
                     return 1
                 else:
                     return -1
-             def checonnectionurll4(urll1 ):
+            def checonnectionurll4(urll1 ):
                 try :
                     request = requests.get(urll)
                     if request.status_code == 200:
