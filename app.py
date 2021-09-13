@@ -164,9 +164,9 @@ def predict():
     #chrome_options.add_argument('disable-infobars')
 
     #before use selisiun################################################
-    from selenium import webdriver
+    #from selenium import webdriver
     import os
-    chrome_options = webdriver.ChromeOptions()
+    """chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -174,8 +174,20 @@ def predict():
     #driver = webdriver.Chrome(executable_path=os.environ.get("/WebDrive/chromedriver.exe"), chrome_options=chrome_options)
     #driver = webdriver.Chrome('./WebDrive/chromedriver.exe')
     from webdriver_manager.chrome import ChromeDriverManager
+    driver = webdriver.Chrome(ChromeDriverManager().install())"""
+    import time
 
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    from selenium import webdriver
+    from webdriver_manager.chrome import ChromeDriverManager
+
+    gChromeOptions = webdriver.ChromeOptions()
+    gChromeOptions.add_argument("window-size=1920x1480")
+    gChromeOptions.add_argument("disable-dev-shm-usage")
+    driver = webdriver.Chrome(chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install())
+    """driver.get("https://www.python.org/")
+    time.sleep(3)
+    driver.save_screenshot("my_screenshot.png")
+    driver.close()"""
     #try:
     for n in range(len(data1)):
             url = data1[n]
@@ -186,9 +198,12 @@ def predict():
             links3 =[]
             RP3=[]
             try :
-                driver.implicitly_wait(2) 
-                resp= driver.get(url)
-                driver.get_screenshot_as_file('screenshot1.png')
+                #driver.implicitly_wait(2) 
+                #resp= driver.get(url)
+                driver.get(url)
+                time.sleep(3)
+                #driver.get_screenshot_as_file('screenshot1.png')
+                driver.save_screenshot('screenshot1.png')
                 driver.close()
                 response = requests.get(url)
                 html = response.text         
