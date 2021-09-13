@@ -369,7 +369,7 @@ def predict():
 
             
             try:   
-                global url2
+                #global url2
                 url2 = checonnectionurll2(newLink)
                 #url2 = checonnectionurll2(newLink)
                 #driver2 = webdriver.Chrome('chromedriver.exe')
