@@ -27,11 +27,24 @@ model = pickle.load(open('model.pkl','rb'))
 def home():
     return render_template('index.html')
 
-@app.route('/predict',methods=[ 'POST'])
+"""@app.route('/predict',methods=[ 'POST'])
 def predict():
     if request.method == 'POST':
         url = request.form['url']
-        data1 = [('{}'.format(url))]
+        data1 = [('{}'.format(url))]"""
+@app.route('/', methods=['GET', 'POST'])
+def predict():
+    data1 = []
+	errors = None
+    #results = {}
+    if request.method == 'POST':
+	# get url that the person has entered
+        try:
+            url = request.form['url']
+            data1 = [('{}'.format(url))]
+        except:
+            errors "Unable to get URL. Please make sure it's valid and try again."
+            return render_template('index.html', error=error)
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
