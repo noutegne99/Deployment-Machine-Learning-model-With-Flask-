@@ -35,16 +35,18 @@ def predict():
 @app.route('/', methods=['GET', 'POST'])
 def predict():
     data1 = []
-	errors = None
+	errors = []
     #results = {}
     if request.method == 'POST':
 	# get url that the person has entered
         try:
-            url = request.form['url']
-            data1 = [('{}'.format(url))]
+	    url = request.form['url']
+	    data1 = [('{}'.format(url))]
         except:
-            error = "Unable to get URL. Please make sure it's valid and try again."
-            return render_template('index.html', errors=error)
+            errors.append(
+                "Unable to get URL. Please make sure it's valid and try again."
+            )
+            return render_template('index.html', error=error)
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
