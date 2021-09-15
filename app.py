@@ -34,11 +34,12 @@ def predict():
         data1 = [('{}'.format(url))]"""
 @app.route('/predict',methods=[ 'POST'])
 def predict():
-	error = None
     if request.method == 'POST':
         url = request.form['url']
+        data1 = []
 	    data1 = [('{}'.format(url))]
     else:
+        error = None
         error =" get URL. Please make sure it's valid and try again."
         return render_template('index.html', error=error)
         
