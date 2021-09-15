@@ -31,8 +31,8 @@ def home():
 def predict():
     if request.method == 'POST':
         url = request.form['url']
-        data1 = [('{}'.format(url))]"""
-@app.route('/predict',methods=[ 'POST'])
+        data1 = [('{}'.format(url))]
+"""@app.route('/predict',methods=[ 'POST'])
 def predict():
     if request.method == 'POST':
         url = request.form['url']
