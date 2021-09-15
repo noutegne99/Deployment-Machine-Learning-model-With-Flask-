@@ -27,7 +27,7 @@ model = pickle.load(open('model.pkl','rb'))
 def home():
     return render_template('index.html')
 
-"""@app.route('/predict',methods=[ 'POST'])
+@app.route('/predict',methods=[ 'POST'])
 def predict():
     if request.method == 'POST':
         url = request.form['url']
@@ -36,7 +36,7 @@ def predict():
 def predict():
     if request.method == 'POST':
         url = request.form['url']
-	    data1 = [('{}'.format(url))]
+	    data1 = [('{}'.format(url))]"""
     else:
         error = None
         error =" get URL. Please make sure it's valid and try again."
