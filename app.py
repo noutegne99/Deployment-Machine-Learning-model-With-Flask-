@@ -36,7 +36,6 @@ def predict():
 def predict():
     if request.method == 'POST':
         url = request.form['url']
-        data1 = []
 	    data1 = [('{}'.format(url))]
     else:
         error = None
