@@ -33,8 +33,7 @@ def predict():
         url = request.form['url']
         data1 = [('{}'.format(url))]
     else:
-        error = None
-        error = ' get URL. Please make sure it\'s valid and try again.'
+        error = "get URL. Please make sure it is valid and try again."
         return render_template('index.html', error=error)
         
     def func_urlAtSymbol(url):                                    #f2
