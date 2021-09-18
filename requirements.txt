@@ -11,7 +11,7 @@ numpy
 flask 
 gunicorn
 matplotlib
-chromedriver
+
 pandas
 requests 
 
