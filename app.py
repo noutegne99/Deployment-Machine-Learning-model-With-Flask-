@@ -34,8 +34,7 @@ def predict():
         data1 = [('{}'.format(url))]
     else:
         error = "get URL. Please make sure it is valid and try again."
-        #return render_template('index.html', error=error)
-        return render_template('index.html', prediction_text='get URL. Please make sure it is valid and try again.')
+    return render_template('index.html', error=error)
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
@@ -238,7 +237,7 @@ def predict():
                 #resp= driver.get(url)
                 driver = webdriver.Chrome(ChromeDriverManager().install())
                 driver.get(url)
-                time.sleep(3)
+                #time.sleep(3)
                 #driver.get_screenshot_as_file('/Screenshot/screenshot1.png')
                 driver.save_screenshot('screenshot1.png')
                 driver.maximize_window()
@@ -368,7 +367,7 @@ def predict():
                 #url2 = checonnectionurll2(newLink)
                 #driver2 = webdriver.Chrome('chromedriver.exe')
                 driver2 = webdriver.Chrome(ChromeDriverManager().install())
-                driver2.implicitly_wait(2) 
+                #driver2.implicitly_wait(2) 
                 resp2= driver2.get(url2)
                 driver2.get_screenshot_as_file('screenshot2.png')
                 driver2.close()
@@ -474,7 +473,7 @@ def predict():
             try:
                 #driver3 = webdriver.Chrome('chromedriver.exe')
                 driver3 = webdriver.Chrome(ChromeDriverManager().install())
-                driver3.implicitly_wait(2) 
+                #driver3.implicitly_wait(2) 
                 resp3= driver3.get(url3)
                 driver3.get_screenshot_as_file('screenshot3.png')
                 driver3.close()
@@ -631,6 +630,8 @@ def predict():
             else:
                 text = 'not secured '
         return text
+
+        
     return render_template('index.html', prediction_text=' This website is {}'.format(RunData('CheckData.csv')))
 
 if __name__ == "__main__":
