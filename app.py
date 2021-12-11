@@ -35,8 +35,10 @@ def predict():
         url = request.form['url']
         data1 = [('{}'.format(url))]
     else:
-        error = "get URL. Please make sure it is valid and try again."
-        return render_template('index.html', error=error)
+        error = "Please make sure it is valid and try again."
+        
+        return render_template('index.html', prediction_text=' get URL. {}'.format(error))
+)
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
