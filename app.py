@@ -440,7 +440,7 @@ def predict():
                 response3 = requests.get(url3)
                 html3 = response3.text
                 soup3 = bs(html3, 'lxml')
-               """ RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
+                """RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
                     [link.get('href') for link in soup3.findAll('link', attrs={'href': re.compile("^#")} )]or
                     [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])"""
             except:
