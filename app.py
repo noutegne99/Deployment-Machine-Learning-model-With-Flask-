@@ -112,7 +112,7 @@ def predict():
             return -1
         else:
             return 1
-   """ def Good_func_NRP(Feature7,Feature71,Feature72):
+    """def Good_func_NRP(Feature7,Feature71,Feature72):
         if (Feature7 == -1) or (Feature71==-1 ) or (Feature72==-1):
             return -1
         else:
