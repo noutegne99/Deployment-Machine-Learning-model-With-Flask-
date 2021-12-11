@@ -1,3 +1,5 @@
+import os
+import time
 import numpy as np
 from flask import Flask, request,jsonify,render_template
 import pickle
@@ -11,13 +13,13 @@ import csv
 from PIL import Image
 import dhash
 from PIL import ImageFilter
-import random
 import tldextract
 import requests
 from urllib.parse  import urlparse
 import hashlib
 from random import sample 
 import sys
+from webdriver_manager.chrome import ChromeDriverManager
 sys.setrecursionlimit(10000)
 
 app = Flask(__name__)
@@ -110,11 +112,11 @@ def predict():
             return -1
         else:
             return 1
-    def Good_func_NRP(Feature7,Feature71,Feature72):
+   """ def Good_func_NRP(Feature7,Feature71,Feature72):
         if (Feature7 == -1) or (Feature71==-1 ) or (Feature72==-1):
             return -1
         else:
-            return 1
+            return 1"""
     def Good_func_ipAddress(Feature8,Feature81,Feature82):
         if (Feature8 ==-1) or (Feature81==-1 ) or (Feature82==-1):
             return -1
@@ -184,54 +186,15 @@ def predict():
             #newLinktext1 = url
         return newLink2
 
-    
-   
-    #chrome_options = webdriver.ChromeOptions()
-    # chrome_options.add_argument('--headless')
-	
-    #chrome_options.add_argument('disable-infobars')
-
-    #before use selisiun################################################
-    #from selenium import webdriver
-    import os
-    """chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    #driver = webdriver.Chrome(executable_path=os.environ.get("/WebDrive/chromedriver.exe"), chrome_options=chrome_options)
-    #driver = webdriver.Chrome('./WebDrive/chromedriver.exe')
-    from webdriver_manager.chrome import ChromeDriverManager
-    driver = webdriver.Chrome(ChromeDriverManager().install())"""
-    import time
-
-    from selenium import webdriver
-    from webdriver_manager.chrome import ChromeDriverManager
-
     gChromeOptions = webdriver.ChromeOptions()
-
-    """gChromeOptions.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    gChromeOptions.add_argument("--headless")
-    gChromeOptions.add_argument("--disable-dev-shm-usage")
-    gChromeOptions.add_argument("--no-sandbox")
-    gChromeOptions.add_argument("--start-maximized")
-    gChromeOptions.add_argument("window-size=1920x1480")
-    #gChromeOptions.add_argument("disable-dev-shm-usage")
-    driver = webdriver.Chrome(chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install())
-    driver.maximize_window()
-    driver.get("https://www.python.org/")
-    time.sleep(3)
-    driver.save_screenshot("my_screenshot.png")
-    driver.close()"""
     #try:
     for n in range(len(data1)):
             url = data1[n]
             links =[]
-            RP1=[]
+            #RP1=[]
             link2 =[]
-            RP3=[]
+            #RP3=[]
             links3 =[]
-            RP3=[]
             try :
                 #driver.implicitly_wait(2) 
                 #resp= driver.get(url)
@@ -261,20 +224,20 @@ def predict():
                 [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
                 [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
                 #print(links)
-                RP1 =([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or
+                """RP1 =([a.get('href') for a in soup.findAll('a', attrs={'href': re.compile("^#")} )] or
                     [link.get('href') for link in soup.findAll('link', attrs={'href': re.compile("^#")} )]or
-                    [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})])
+                    [script.get('src') for script in soup.findAll('script', attrs={'src': re.compile("^#")})])"""
 
                 hash_object = hashlib.sha3_224(soup.encode()).hexdigest()
                 #print(hash_object.hexdigest())
                 print(url)
             except:
                 pass
-            def func_NRP(RP1):
+            """def func_NRP(RP1):
                 if len(RP1)>=1:
                     return -1
                 else:
-                    return 1
+                    return 1"""
 
             newL =[]
             def selct_url(links,url):
@@ -326,9 +289,6 @@ def predict():
                 else:
                     return -1
             def func_MatchDomainTitle(url): #f5
-                import tldextract
-                import requests
-                from bs4 import BeautifulSoup as bs
                 subdm = tldextract.extract(url).subdomain
                 #print(subdm)
                 dmr = tldextract.extract(url).domain
@@ -353,13 +313,13 @@ def predict():
                 return result
             Feature5 = func_CheckpasswordCreditcard(url)
             Feature6 = func_MatchDomainTitle(url)
-            Feature7 = func_NRP(RP1)
+            #Feature7 = func_NRP(RP1)
             #print(url)
             ##$$print(newLink)
             ##$$print(newLinktext1)
             ### Closing the first page #########################################################
             links2 =[]
-            RP2=[]
+            #RP2=[]
 
             url2 = checonnectionurll2(newLink)
             try:   
@@ -391,19 +351,19 @@ def predict():
                 [link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^[A-Za-z0-9]")} )] or 
                 [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^[A-Za-z0-9]")} )])
                 ##$$links2
-                RP2 =([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^#")} )] or
+                """RP2 =([a.get('href') for a in soup2.findAll('a', attrs={'href': re.compile("^#")} )] or
                     [link.get('href') for link in soup2.findAll('link', attrs={'href': re.compile("^#")} )]or
-                    [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})])
+                    [script.get('src') for script in soup2.findAll('script', attrs={'src': re.compile("^#")})])"""
                 hash_object2 = hashlib.sha3_224(soup2.encode())
                 #print(hash_object2.hexdigest())
                 #ulink = url2
             except:
                 pass
-            def func_NRP2(RP2):
+            """def func_NRP2(RP2):
                 if len(RP2)>=1:
                     return -1
                 else:
-                    return 1
+                    return 1"""
 
             uulink =  url2
             
@@ -467,7 +427,7 @@ def predict():
 
             Feature51 = func_CheckpasswordCreditcard2(uulink)
             Feature61 = func_MatchDomainTitle2(uulink)
-            Feature71 = func_NRP(RP2)
+            #Feature71 = func_NRP(RP2)
             #### Closing of the second web page#######################################################
             url3 = checonnectionurll3(newLink2)
             try:
@@ -480,18 +440,18 @@ def predict():
                 response3 = requests.get(url3)
                 html3 = response3.text
                 soup3 = bs(html3, 'lxml')
-                RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
+               """ RP3 =([a.get('href') for a in soup3.findAll('a', attrs={'href': re.compile("^#")} )] or
                     [link.get('href') for link in soup3.findAll('link', attrs={'href': re.compile("^#")} )]or
-                    [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])
+                    [script.get('src') for script in soup3.findAll('script', attrs={'src': re.compile("^#")})])"""
             except:
                 pass
             #hash_object3 = hashlib.md5(soup3.encode())
             #print(hash_object3.hexdigest())
-            def func_NRP3(RP3):
+            """def func_NRP3(RP3):
                 if len(RP3)>=1:
                     return -1
                 else:
-                    return 1
+                    return 1"""
 
             Feature22 = func_urlAtSymbol(url3)
             Feature32 = func_urlDasheSymbol(url3)
@@ -551,7 +511,7 @@ def predict():
             #driver3.close()
             Feature52 = func_CheckpasswordCreditcard3(url3)
             Feature62 = func_MatchDomainTitle3(url3)
-            Feature72 = func_NRP3(RP3)
+            #Feature72 = func_NRP3(RP3)
             ######### Closing the last web page##################################
             ######## hash of the second link select on url##########################
             #return ulink
