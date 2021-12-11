@@ -329,7 +329,7 @@ def predict():
                 driver2 = webdriver.Chrome(ChromeDriverManager().install())
                 #driver2.implicitly_wait(2) 
                 resp2= driver2.get(url2)
-                driver2.get_screenshot_as_file('screenshot2.png')
+                driver2.save_screenshot('screenshot2.png')
                 driver2.close()
                 response2 = requests.get(url2)
                 html2 = response2.text
@@ -435,7 +435,7 @@ def predict():
                 driver3 = webdriver.Chrome(ChromeDriverManager().install())
                 #driver3.implicitly_wait(2) 
                 resp3= driver3.get(url3)
-                driver3.get_screenshot_as_file('screenshot3.png')
+                driver3.save_screenshot('screenshot3.png')
                 driver3.close()
                 response3 = requests.get(url3)
                 html3 = response3.text
