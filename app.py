@@ -31,13 +31,12 @@ def home():
 
 @app.route('/predict',methods=[ 'POST'])
 def predict():
-    if request.method == 'POST':
-        url = request.form['url']
-        data1 = [('{}'.format(url))]
-    else:
-        #error = "Please make sure it is valid and try again."
-        return render_template('index.html', prediction_text=' get URL. Please make sure it is valid and try again.')
-
+    try:
+        if request.method == 'POST':
+            url = request.form['url']
+            data1 = [('{}'.format(url))]
+    except:
+        return render_template('index.html',Predit_text ="Unable to get URL. Please make sure it's valid and try again.")  
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
