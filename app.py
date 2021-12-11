@@ -564,7 +564,7 @@ def predict():
             
             #'URL','URL': url,
 
-            with open('CheckData.csv', mode='r+') as score_file:
+            with open('CheckData.csv', mode='w') as score_file:
                 fieldnames = ['Perceptual_similarity','Text_similarity','TesturlAtSymbol','TesturlDasheSymbol','TesturlDotSymbol',
                                 'TestGoodCheckpwdCreditcard','TestGoodMatchDomainTitle','TestIPAdress','TestGoodurLength']
                 writer = csv.DictWriter(score_file, fieldnames=fieldnames)
