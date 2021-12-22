@@ -38,6 +38,7 @@ def predict():
             error ="Unable to get URL. Please make sure it\'s valid url and try again."
             return render_template('index.html',Predit_text ='{}'.format(error))  
     except:
+        error ="Unable to get URL. Please make sure it\'s valid url and try again."
         return render_template('index.html',Predit_text ='{}'.format(error))  
         
     def func_urlAtSymbol(url):                                    #f2
