@@ -37,7 +37,7 @@ def predict():
         else:
             error ="Unable to get URL. Please make sure it\'s valid url and try again."
             return render_template('index.html',Predit_text ='{}'.format(error))  
-    except:
+    except requests.exceptions.ConnectionError:
         error ="Unable to get URL. Please make sure it\'s valid url and try again."
         return render_template('index.html',Predit_text ='{}'.format(error))  
         
