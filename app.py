@@ -14,7 +14,6 @@ from PIL import Image
 import dhash
 from PIL import ImageFilter
 import tldextract
-import requests
 from urllib.parse  import urlparse
 import hashlib
 from random import sample 
@@ -35,8 +34,10 @@ def predict():
         if request.method == 'POST':
             url = request.form['url']
             data1 = [('{}'.format(url))]
+        else:
+            return render_template('index.html',Predit_text ="Unable to get URL. Please make sure it's valid url and try again.") 
     except:
-        return render_template('index.html',Predit_text ="Unable to get URL. Please make sure it's valid and try again.")  
+        return render_template('index.html',Predit_text ="Unable to get URL. Please make sure it's valid url and try again.")  
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
