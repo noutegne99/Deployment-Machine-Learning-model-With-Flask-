@@ -31,9 +31,14 @@ def home():
 @app.route('/predict',methods=[ 'POST'])
 def predict():
     try:
+        
         if request.method == 'POST':
-            url = request.form['url']
-            data1 = [('{}'.format(url))]
+            try
+                url = request.form['url']
+                data1 = [('{}'.format(url))]
+            except:
+                rror ="Unable to get URL. Please make sure it\'s valid url and try again."
+            return render_template('index.html',Predit_text ='{}'.format(error))  
         else:
             error ="Unable to get URL. Please make sure it\'s valid url and try again."
             return render_template('index.html',Predit_text ='{}'.format(error))  
