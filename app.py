@@ -30,7 +30,19 @@ def home():
 
 @app.route('/predict',methods=[ 'POST'])
 def predict():
+    def checonnectionurl1(url):
+    urll1 = None
+    try :
+        request = requests.get(url)
+        if request.status_code == 200:
+            urll1 = url
+        else:
+            urll1 = "Fail connection. Please check your connexion and try again"
+    except:
+        urll1 = "Fail connection. Please check your connexion and try again"
+    return urll1
     try:
+        url = checonnectionurl1(url)
         if request.method == 'POST':
             url = request.form['url']
             data1 = [('{}'.format(url))]
