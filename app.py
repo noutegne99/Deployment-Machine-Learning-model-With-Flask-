@@ -42,9 +42,10 @@ def predict():
             urll1 = "Fail connection. Please check your connexion and try again"
         return urll1
     try:
-        url = checonnectionurl1(url)
+        
         if request.method == 'POST':
             url = request.form['url']
+            url = checonnectionurl1(url)
             data1 = [('{}'.format(url))]
         else:
             error ="Unable to get URL. Please make sure it\'s valid url and try again."
