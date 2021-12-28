@@ -32,16 +32,12 @@ def home():
 def predict():
     try:
         if request.method == 'POST':
-            try:
-                url = request.form['url']
-                data1 = [('{}'.format(url))]
-            except:
-                rror ="Unable to get URL. Please make sure it\'s valid url and try again."
-            return render_template('index.html',Predit_text ='{}'.format(error))  
+            url = request.form['url']
+            data1 = [('{}'.format(url))]
         else:
             error ="Unable to get URL. Please make sure it\'s valid url and try again."
             return render_template('index.html',Predit_text ='{}'.format(error))  
-    except requests.exceptions.ConnectionError:
+    except:
         error ="Unable to get URL. Please make sure it\'s valid url and try again."
         return render_template('index.html',Predit_text ='{}'.format(error))  
         
