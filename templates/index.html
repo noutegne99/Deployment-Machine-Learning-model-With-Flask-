@@ -21,7 +21,7 @@
      <!-- Main Input For Receiving Query to our ML pattern="https://.*       pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?""-->
     <form action="{{ url_for('predict')}}"method="post">
 	
-    	<input type="url" name="url" id="url" placeholder="https://example.com"   size="30"
+    	<input type="url" name="url" id="url" placeholder="Type in the url of the site you wish to check:https://example.com"   size="30"
        required="required">
 				 
         <button type="submit" class="btn btn-primary disabled btn-block btn-large">Predict</button>
