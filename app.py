@@ -48,7 +48,7 @@ def predict():
             url = checonnectionurl1(url)
             data1 = [('{}'.format(url))]
         else:
-            error ="Unable to get URL. Please make sure it\'s valid url and try again."
+            error =checonnectionurl1(url)
             return render_template('index.html',Predit_text ='{}'.format(error))  
     except:
         error ="Unable to get URL. Please make sure it\'s valid url and try again."
