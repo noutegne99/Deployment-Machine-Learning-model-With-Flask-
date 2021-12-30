@@ -30,7 +30,7 @@ def home():
 
 @app.route('/predict',methods=[ 'POST'])
 def predict():
-    def checonnectionurl1(url):
+    """def checonnectionurl1(url):
         urll1 = None
         try :
             request = requests.get(url)
@@ -40,19 +40,18 @@ def predict():
                 urll1 = "Fail connection. Please check your connexion and try again"
         except:
             urll1 = "Fail connection. Please check your connexion and try again"
-        return urll1
+        return urll1"""
     try:
         
         if request.method == 'POST':
             url = request.form['url']
-            url = checonnectionurl1(url)
             data1 = [('{}'.format(url))]
         else:
-            error =checonnectionurl1(url)
-            return render_template('index.html',prediction_text='{}'.format(error))  
+            error = "Fail connection. Please check your connexion and try again"
+            return render_template('index.html', prediction_text='{}'.format(error))  
     except:
         error ="Unable to get URL. Please make sure it\'s valid url and try again."
-        return render_template('index.html',prediction_text='{}'.format(error))  
+        return render_template('index.html', prediction_text='{}'.format(error))  
         
     def func_urlAtSymbol(url):                                    #f2
         ats = url.count('@')
