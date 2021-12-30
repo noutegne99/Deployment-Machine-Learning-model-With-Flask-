@@ -13,6 +13,6 @@ gunicorn
 matplotlib
 chromedriver
 pandas
-requests 
+
 
 
