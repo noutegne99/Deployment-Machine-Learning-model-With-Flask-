@@ -602,7 +602,7 @@ def predict():
                 features = [converted_list]
             prediction = model.predict(features)
             if (prediction[0] == 1):
-                text = 'is not phishing website '
+                text = 'is not an phishing website'
             else:
                 text = 'could be an phishing website '
         return text
