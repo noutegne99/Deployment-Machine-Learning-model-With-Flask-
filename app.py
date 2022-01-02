@@ -19,7 +19,6 @@ import hashlib
 from random import sample 
 import sys
 from webdriver_manager.chrome import ChromeDriverManager
-sys.setrecursionlimit(10000)
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
