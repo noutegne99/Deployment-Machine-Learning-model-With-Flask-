@@ -602,13 +602,13 @@ def predict():
                 features = [converted_list]
             prediction = model.predict(features)
             if (prediction[0] == 1):
-                text = 'not phishing website '
+                text = 'is not phishing website '
             else:
                 text = 'could be an phishing website '
         return text
 
         
-    return render_template('index.html', prediction_text=' This website is {}'.format(RunData('CheckData.csv')))
+    return render_template('index.html', prediction_text=' This website {}'.format(RunData('CheckData.csv')))
 
 if __name__ == "__main__":
     app.run(debug=True)
