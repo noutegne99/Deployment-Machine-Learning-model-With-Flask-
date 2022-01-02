@@ -47,8 +47,9 @@ def predict():
             url = request.form['url']
             data1 = [('{}'.format(url))]
         else:
-            error = "Fail connection. Please check your connexion and try again"
+            error = " Please check your connexion and try again"
             return render_template('index.html', prediction_text='{}'.format(error))  
+            return render_template('index.html', prediction_text=' Fail connection.{}'.format(RunData('CheckData.csv')))
     except:
         error ="Unable to get URL. Please make sure it\'s valid url and try again."
         return render_template('index.html', prediction_text='{}'.format(error))  
@@ -601,9 +602,9 @@ def predict():
                 features = [converted_list]
             prediction = model.predict(features)
             if (prediction[0] == 1):
-                text = 'secured '
+                text = 'not phishing website '
             else:
-                text = 'not secured '
+                text = 'could be an phishing website '
         return text
 
         
