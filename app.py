@@ -31,7 +31,7 @@ def home():
 def predict():
     """def checonnectionurl1(url):
         urll1 = None
-        try :
+        try try :
             request = requests.get(url)
             if request.status_code == 200:
                 urll1 = url
