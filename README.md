@@ -7,3 +7,5 @@ Abstract. The green HTTPS padlock located at the extreme left of the address bar
 Keywords: Phishing attack, Hash function, Feature extraction, Content variation similarity, Visual perception similarity, URL features extraction, Machine learning
 
 https://phishingwebapp.herokuapp.com/
+
+http://127.0.0.1:5000
